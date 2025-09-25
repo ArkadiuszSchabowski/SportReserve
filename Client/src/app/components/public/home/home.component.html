@@ -1,0 +1,58 @@
+<div id="main-container" class="component-container">
+  <div id="left-container">
+    <div id="title-container">
+      <title id="title">Sport Reserve</title>
+    </div>
+  </div>
+  <div id="right-container">
+    <div id="carousel-container">
+      <carousel>
+        <slide
+          id="slide"
+          routerLink="/register"
+          *ngIf="!(authService.currentUserSource | async)"
+        >
+          <img src="../../../../assets/photos/home/1.png" />
+        </slide>
+        <slide>
+          <img
+            src="../../../../assets/photos/home/2.png"
+            routerLink="/race/137"
+          />
+        </slide>
+        <slide>
+          <img
+            src="../../../../assets/photos/home/3.png"
+            routerLink="/race/138"
+          />
+        </slide>
+        <slide>
+          <img
+            src="../../../../assets/photos/home/4.png"
+            routerLink="/race/140"
+          />
+        </slide>
+      </carousel>
+    </div>
+    <div id="text-container">
+      <div id="text" *ngIf="authService.currentUserSource | async">
+        Welcome back! Use the app to join your chosen
+        run, track your progress, or discover a new challenge. Plan your
+        activity and hit the trails!
+      </div>
+      <div id="text" *ngIf="!(authService.currentUserSource | async)">
+        Join the Sport Reserve community! Find and book runs that fit what you
+        need and want to do. If you're looking for a new challenge, or just want
+        to be active, our app helps you sign up easily.
+      </div>
+      <div id="button-container" *ngIf="!(authService.currentUserSource | async)">
+        <button mat-raised-button id="register-button" routerLink="/register">
+          Sign up
+        </button>
+        <button mat-raised-button id="login-button" routerLink="/login">
+          Log in
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

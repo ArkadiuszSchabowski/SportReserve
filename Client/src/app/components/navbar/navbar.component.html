@@ -1,0 +1,100 @@
+<div id="navbar-container">
+  <div id="navbar-container-mobile">
+    <button
+      mat-button
+      [matMenuTriggerFor]="menu"
+      id="navbar-mobile-button-menu"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button class="navbar-mobile-button" mat-menu-item routerLink="/">
+        Home
+      </button>
+      <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/login"
+        *ngIf="!(authService.currentUserSource | async)"
+      >
+        Login
+      </button>
+      <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/register"
+        *ngIf="!(authService.currentUserSource | async)"
+      >
+        Register
+      </button>
+      <button class="navbar-mobile-button" mat-menu-item routerLink="/races">
+        Races
+      </button>
+      <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/profile/information"
+        *ngIf="authService.currentUserSource | async"
+      >
+        Profile
+      </button>
+      <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/moderator-panel"
+        *ngIf="
+          (authService.currentUserSource | async) &&
+          ((authService.currentRoleSource | async) === 'moderator' ||
+            (authService.currentRoleSource | async) === 'admin')
+        "
+      >
+        Moderator Panel
+      </button>
+      <button class="navbar-mobile-button" mat-menu-item routerLink="/contact">
+        Contact
+      </button>
+    </mat-menu>
+  </div>
+  <div id="navbar-container-web">
+    <button
+      class="navbar-web-button navbar-web-left-edge-button"
+      routerLink="/"
+    >
+      Home
+    </button>
+    <button
+      class="navbar-web-button"
+      routerLink="/login"
+      *ngIf="!(authService.currentUserSource | async)"
+    >
+      Login
+    </button>
+    <button
+      class="navbar-web-button"
+      routerLink="/register"
+      *ngIf="!(authService.currentUserSource | async)"
+    >
+      Register
+    </button>
+    <button class="navbar-web-button" routerLink="/races">Races</button>
+    <button
+      class="navbar-web-button"
+      routerLink="/profile/information"
+      *ngIf="authService.currentUserSource | async"
+    >
+      Profile
+    </button>
+    <button
+      class="navbar-web-button"
+      routerLink="/moderator-panel"
+      *ngIf="
+        (authService.currentUserSource | async) &&
+        ((authService.currentRoleSource | async) === 'moderator' ||
+          (authService.currentRoleSource | async) === 'admin')
+      "
+    >
+      Moderator Panel
+    </button>
+    <button class="navbar-web-button" routerLink="/contact">Contact</button>
+  </div>
+</div>
