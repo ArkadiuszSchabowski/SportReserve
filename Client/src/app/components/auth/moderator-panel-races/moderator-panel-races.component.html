@@ -1,0 +1,83 @@
+<div id="main-container" class="component-container">
+  <mat-label>Moderator Panel - Races</mat-label>
+  <div id="add-search-container">
+    <div id="search-container">
+      <form [formGroup]="searchForm">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="Search on this page..."
+            formControlName="searchValue"
+          />
+        </mat-form-field>
+      </form>
+    </div>
+    <div id="add-container">
+      <button
+        id="button-add-race"
+        class="button-green"
+        (click)="openDialogAddRace()"
+      >
+        <mat-icon class="green">add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div
+    class="race-container margin-top-20"
+    *ngFor="let race of paginationResult.results"
+  >
+    <div>
+      Race ID: <strong>{{ race.id }}</strong>
+    </div>
+    <div>Name: {{ race.name }}</div>
+    <div>Date of start: {{ race.dateOfStart }}</div>
+    <div>Description: {{ race.description }}</div>
+    <div *ngIf="race.entryFeeGBP">Entry fee: {{ race.entryFeeGBP }}</div>
+    <div *ngIf="!race.entryFeeGBP">Entry fee: Free</div>
+    <div *ngIf="race.isRegistrationOpen === true">Registration: Open</div>
+    <div *ngIf="race.isRegistrationOpen === false">Registration: Close</div>
+    <div class="poster-container">
+      <img class="poster" [src]="raceUrl + race.posterUrl" />
+    </div>
+    <div class="button-icon-container">
+      <button
+        class="button-icon left-icon-button"
+        (click)="openDialogAddRaceTrace(race)"
+      >
+        <mat-icon class="green">note_add</mat-icon>
+      </button>
+      <button
+        class="button-icon left-icon-button"
+        (click)="openDialogUpdate(race)"
+      >
+        <mat-icon class="primary">edit</mat-icon>
+      </button>
+      <button class="button-icon" (click)="openDialogRemove(race)">
+        <mat-icon class="red">delete_forever</mat-icon>
+      </button>
+    </div>
+    <div class="race-trace-container" *ngFor="let trace of race.raceTraces">
+      <div>
+        Trace ID: <strong>{{ trace.id }}</strong>
+      </div>
+      <div>Location: {{ trace.location }}</div>
+      <div>Distance: {{ trace.distanceKm }} km</div>
+      <div>Hour of start: {{ trace.hourOfStart }}</div>
+      <div *ngIf="trace.slots">Slots: {{ trace.slots }}</div>
+      <div *ngIf="!trace.slots">Slots: No limit</div>
+      <button class="button-icon" (click)="openDialogRemoveRaceTrace(trace)">
+        <mat-icon class="red">delete_forever</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-paginator
+    class="select-white-theme"
+    [length]="paginationResult.totalCount"
+    [pageSize]="100"
+    [pageSizeOptions]="[100, 200, 500, 1000]"
+    aria-label="Select page"
+    (page)="changePage($event)"
+  >
+  </mat-paginator>
+</div>

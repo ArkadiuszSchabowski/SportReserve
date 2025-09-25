@@ -1,0 +1,233 @@
+<div id="main-container" class="component-container">
+  <div class="left-container">
+        <img id="registration-image">
+  </div>
+  <div class="right-container">
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="loginDataForm" [editable]="false">
+        <form
+          [formGroup]="loginDataForm"
+          (ngSubmit)="validateRegisterStepOne()"
+        >
+          <ng-template matStepLabel>Login information</ng-template>
+          <mat-card appearance="outlined">
+            <div id="register-form">
+              <mat-card-content>
+                <label id="register-title-label" class="title-label"
+                  >REGISTRATION FORM</label
+                >
+                <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input
+                    id="email"
+                    formControlName="email"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="emailError">
+                    {{ emailError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Password</mat-label>
+                  <input
+                    id="password"
+                    formControlName="password"
+                    autocomplete="off"
+                    matInput
+                    [type]="passwordHiddenSignal() ? 'password' : 'text'"
+                  />
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    class="password-button"
+                    (click)="changePasswordVisibility($event)"
+                    [attr.aria-label]="
+                      passwordHiddenSignal() ? 'Hide password' : 'Show password'
+                    "
+                    [attr.aria-pressed]="passwordHiddenSignal()"
+                  >
+                    <mat-icon>{{
+                      passwordHiddenSignal() ? "visibility" : "visibility_off"
+                    }}</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="passwordError">
+                    {{ passwordError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Repeat password</mat-label>
+                  <input
+                    id="repeatPassword"
+                    formControlName="repeatPassword"
+                    autocomplete="off"
+                    matInput
+                    [type]="repeatPasswordHiddenSignal() ? 'password' : 'text'"
+                  />
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    class="password-button"
+                    (click)="changeRepeatPasswordVisibility($event)"
+                    [attr.aria-label]="
+                      repeatPasswordHiddenSignal()
+                        ? 'Hide password'
+                        : 'Show password'
+                    "
+                    [attr.aria-pressed]="repeatPasswordHiddenSignal()"
+                  >
+                    <mat-icon>{{
+                      repeatPasswordHiddenSignal()
+                        ? "visibility"
+                        : "visibility_off"
+                    }}</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="repeatPasswordError">
+                    {{ repeatPasswordError }}
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      !repeatPasswordError && validationModelErrors?.length
+                    "
+                  >
+                    {{ validationModelErrors?.[0] }}
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      !repeatPasswordError &&
+                      !validationModelErrors?.length &&
+                      serverError
+                    "
+                  >
+                    {{ serverError }}
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  mat-flat-button
+                  class="submit-button margin-top-20 margin-bottom-10"
+                >
+                  Next
+                </button>
+                <div id="login-container">
+                  <a routerLink="/login">Do you have an account?</a>
+                </div>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </form>
+      </mat-step>
+      <mat-step [editable]="false">
+        <form [formGroup]="personalInformationform" (ngSubmit)="register()">
+          <ng-template matStepLabel>Personal information</ng-template>
+          <mat-card appearance="outlined">
+            <div id="personal-information-form">
+              <mat-card-content>
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input
+                    id="name"
+                    formControlName="name"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="nameError">
+                    {{ nameError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Surname</mat-label>
+                  <input
+                    id="surname"
+                    formControlName="surname"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="surnameError">
+                    {{ surnameError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Gender</mat-label>
+                  <mat-select id="gender" formControlName="gender" required>
+                    <mat-option
+                      *ngFor="let gender of genders"
+                      [value]="gender.value"
+                    >
+                      {{ gender.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="genderError">
+                    {{ genderError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Date of birth</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    id="dateOfBirth"
+                    formControlName="dateOfBirth"
+                    required
+                    readonly
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="dateOfBirthError">
+                    {{ dateOfBirthError }}
+                  </div>
+                  <div *ngIf="serverError" class="error">
+                    {{ serverError }}
+                  </div>
+                  <div *ngIf="validationModelErrors?.length">
+                    <ul
+                      *ngFor="let error of validationModelErrors"
+                      class="error"
+                    >
+                      {{
+                        error
+                      }}
+                    </ul>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  mat-flat-button
+                  class="submit-button margin-top-10"
+                >
+                  Sign up
+                </button>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>
