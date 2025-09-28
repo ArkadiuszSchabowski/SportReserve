@@ -3,8 +3,12 @@ name: WebClient - Pipeline
 on:
   push:
     branches: ["**"]
+    paths:
+      - 'Server/Client/**'
   pull_request:
     branches: ["main"]
+    paths:
+      - 'Server/Client/**'
 
 jobs:
   build:
