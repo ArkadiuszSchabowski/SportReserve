@@ -18,12 +18,16 @@ jobs:
       - uses: actions/checkout@v3
           
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v4.0.1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
+      - name: Pack local NuGet packages
+        run: dotnet pack ../../SportReserve_Shared/SportReserve_Shared.csproj -o ./nupkg
+        working-directory: ./Server/Emails/SportReserve_Emails
+
       - name: Restore dependencies
-        run: dotnet restore SportReserve_Emails.csproj
+        run: dotnet restore SportReserve_Emails.csproj --ignore-failed-sources
         working-directory: ./Server/Emails/SportReserve_Emails
 
       - name: Build
