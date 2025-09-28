@@ -4,11 +4,11 @@ on:
   push:
     branches: ["**"]
     paths:
-      - 'Server/SportReserve_Emails/**'
+      - 'Server/Emails/SportReserve_Emails/**'
   pull_request:
     branches: ["main"]
     paths:
-      - 'Server/SportReserve_Emails/**'
+      - 'Server/Emails/SportReserve_Emails/**'
 
 jobs:
   build:
@@ -24,12 +24,12 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore SportReserve_Emails.csproj
-        working-directory: ./Server/SportReserve_Emails
+        working-directory: ./Server/Emails/SportReserve_Emails
 
       - name: Build
         run: dotnet build SportReserve_Emails.csproj --no-restore
-        working-directory: ./Server/SportReserve_Emails
+        working-directory: ./Server/Emails/SportReserve_Emails
 
       - name: Test
         run: dotnet test SportReserve_Emails.csproj --filter Category=Unit
-        working-directory: ./Server/SportReserve_Emails
+        working-directory: ./Server/Emails/SportReserve_Emails
