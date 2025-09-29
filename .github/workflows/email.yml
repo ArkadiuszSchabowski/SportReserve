@@ -4,11 +4,11 @@ on:
   push:
     branches: ["**"]
     paths:
-      - 'Server/Emails/SportReserve_Emails/**'
+      - 'Server/Emails/**'
   pull_request:
     branches: ["main"]
     paths:
-      - 'Server/Emails/SportReserve_Emails/**'
+      - 'Server/Emails/**'
 
 jobs:
   build:
@@ -36,4 +36,4 @@ jobs:
 
       - name: Test
         run: dotnet test SportReserve_Emails.csproj --filter Category=Unit
-        working-directory: ./Server/Emails/SportReserve_Emails
+        working-directory: ./Server/Emails/SportReserve_Emails_UnitTests
