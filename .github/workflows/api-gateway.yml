@@ -4,11 +4,11 @@ on:
   push:
     branches: ["**"]
     paths:
-      - 'Server/ApiGateway/SportReserve_ApiGateway/**'
+      - 'Server/ApiGateway/**'
   pull_request:
     branches: ["main"]
     paths:
-      - 'Server/ApiGateway/SportReserve_ApiGateway/**'
+      - 'Server/ApiGateway/**'
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
         working-directory: ./Server/ApiGateway
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore SportReserve_ApiGateway.csproj --ignore-failed-sources
         working-directory: ./Server/ApiGateway/SportReserve_ApiGateway
 
       - name: Build
