@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Users_Db", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Users_UnitTests", "..\SportReserve_Users_UnitTests\SportReserve_Users_UnitTests.csproj", "{F1729615-B7B2-28CD-852B-C3771EEA2B7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_ApiGateway", "..\SportReserve_ApiGateway\SportReserve_ApiGateway.csproj", "{8A43A4A2-03D7-296B-4ACE-E2376E5B8A2F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Races_Db", "..\SportReserve_Races_Db\SportReserve_Races_Db.csproj", "{FA3F9993-6BBE-4E84-BBD9-18A8D45BB3B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Races", "..\SportReserve_Races\SportReserve_Races.csproj", "{FA4F9954-E9A0-8A40-FFC0-05829D0D9DBB}"
@@ -28,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Emails", "..\Emails\SportReserve_Emails\SportReserve_Emails.csproj", "{90EF12F8-6529-F5A0-82EB-7B2FB3440103}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Emails_UnitTests", "..\Emails\SportReserve_Emails_UnitTests\SportReserve_Emails_UnitTests.csproj", "{1853C0EE-B9E8-F3CB-26DA-EF9300515A52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_ApiGateway", "..\ApiGateway\SportReserve_ApiGateway\SportReserve_ApiGateway.csproj", "{05C3F3B6-5AEB-2BA4-2F4B-1F1ACD74C72E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +51,6 @@ Global
 		{F1729615-B7B2-28CD-852B-C3771EEA2B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1729615-B7B2-28CD-852B-C3771EEA2B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1729615-B7B2-28CD-852B-C3771EEA2B7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A43A4A2-03D7-296B-4ACE-E2376E5B8A2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A43A4A2-03D7-296B-4ACE-E2376E5B8A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A43A4A2-03D7-296B-4ACE-E2376E5B8A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A43A4A2-03D7-296B-4ACE-E2376E5B8A2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA3F9993-6BBE-4E84-BBD9-18A8D45BB3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FA3F9993-6BBE-4E84-BBD9-18A8D45BB3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA3F9993-6BBE-4E84-BBD9-18A8D45BB3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +83,10 @@ Global
 		{1853C0EE-B9E8-F3CB-26DA-EF9300515A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1853C0EE-B9E8-F3CB-26DA-EF9300515A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1853C0EE-B9E8-F3CB-26DA-EF9300515A52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C3F3B6-5AEB-2BA4-2F4B-1F1ACD74C72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C3F3B6-5AEB-2BA4-2F4B-1F1ACD74C72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C3F3B6-5AEB-2BA4-2F4B-1F1ACD74C72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C3F3B6-5AEB-2BA4-2F4B-1F1ACD74C72E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
