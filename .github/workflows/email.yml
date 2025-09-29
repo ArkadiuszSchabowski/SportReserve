@@ -24,7 +24,7 @@ jobs:
 
       - name: Pack local NuGet packages
         run: dotnet pack ../../SportReserve_Shared/SportReserve_Shared.csproj -o ./nupkg
-        working-directory: ./Server/Emails/SportReserve_Emails
+        working-directory: ./Server/Emails
 
       - name: Restore dependencies
         run: dotnet restore SportReserve_Emails.csproj --ignore-failed-sources
