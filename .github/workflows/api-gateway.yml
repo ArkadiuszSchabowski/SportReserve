@@ -27,7 +27,7 @@ jobs:
         working-directory: ./Server/SportReserve_Shared
 
       - name: Restore dependencies
-        run: dotnet restore SportReserve_ApiGateway.csproj --ignore-failed-sources
+        run: dotnet restore SportReserve_ApiGateway.csproj
         working-directory: ./Server/ApiGateway/SportReserve_ApiGateway
 
       - name: Build
