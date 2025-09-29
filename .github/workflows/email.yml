@@ -23,11 +23,11 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Pack local NuGet packages
-        run: dotnet pack ../../SportReserve_Shared/SportReserve_Shared.csproj -o ./nupkg
-        working-directory: ./Server/Emails
+        run: dotnet pack SportReserve_Shared.csproj -o ./nupkg
+        working-directory: ./Server/SportReserve_Shared
 
       - name: Restore dependencies
-        run: dotnet restore SportReserve_Emails.csproj --ignore-failed-sources
+        run: dotnet restore SportReserve_Emails.csproj
         working-directory: ./Server/Emails/SportReserve_Emails
 
       - name: Build
