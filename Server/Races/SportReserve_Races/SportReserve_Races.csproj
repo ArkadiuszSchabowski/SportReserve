@@ -23,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SportReserve_Races_Db\SportReserve_Races_Db.csproj" />
+	  <ProjectReference Include="..\SportReserve_Races_Db\SportReserve_Races_Db.csproj" />
 	</ItemGroup>
 
 </Project>
