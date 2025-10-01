@@ -27,9 +27,7 @@ jobs:
         working-directory: ./Server/SportReserve_Shared
 
       - name: Restore dependencies
-        run: dotnet restore SportReserve_Races.csproj \
-          --source ${{ github.workspace }}/Server/SportReserve_Shared/nupkg \
-          --source https://api.nuget.org/v3/index.json
+        run: dotnet restore SportReserve_Races.csproj
         working-directory: ./Server/Races/SportReserve_Races
 
       - name: Build
