@@ -4,11 +4,11 @@ on:
   push:
     branches: ["**"]
     paths:
-      - 'Server/SportReserve_Races/**'
+      - 'Server/Races/SportReserve_Races/**'
   pull_request:
     branches: ["main"]
     paths:
-      - 'Server/SportReserve_Races/**'
+      - 'Server/Races/SportReserve_Races/**'
 
 jobs:
   build:
@@ -22,14 +22,20 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Pack local NuGet packages
+        run: dotnet pack SportReserve_Shared.csproj -o ./nupkg
+        working-directory: ./Server/SportReserve_Shared
+
       - name: Restore dependencies
-        run: dotnet restore SportReserve_Races.csproj
-        working-directory: ./Server/SportReserve_Races
+        run: dotnet restore SportReserve_Races.csproj \
+          --source ${{ github.workspace }}/Server/SportReserve_Shared/nupkg \
+          --source https://api.nuget.org/v3/index.json
+        working-directory: ./Server/Races/SportReserve_Races
 
       - name: Build
         run: dotnet build SportReserve_Races.csproj --no-restore
-        working-directory: ./Server/SportReserve_Races
+        working-directory: ./Server/Races/SportReserve_Races
 
       - name: Test
         run: dotnet test SportReserve_Races.csproj --filter Category=Unit
-        working-directory: ./Server/SportReserve_Races
+        working-directory: ./Server/Races/SportReserve_Races
