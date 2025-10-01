@@ -1,34 +1,21 @@
-# ========================
-# Etap build
-# ========================
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# 1. Kopiujemy plik .csproj projektu
 COPY SportReserve_Emails/*.csproj ./SportReserve_Emails/
 
-# 2. Kopiujemy lokalny feed z paczkami NuGet
 COPY nupkg ./nupkg/
 
-# 3. Restore zależności – lokalny feed + nuget.org
 RUN dotnet restore ./SportReserve_Emails/SportReserve_Emails.csproj \
     --source ./nupkg \
     --source https://api.nuget.org/v3/index.json
 
-# 4. Kopiujemy resztę projektu
 COPY SportReserve_Emails ./SportReserve_Emails
 
-# 5. Publikacja w katalogu /app/publish
 RUN dotnet publish ./SportReserve_Emails/SportReserve_Emails.csproj -c Release -o /app/publish
 
-# ========================
-# Etap runtime
-# ========================
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
-# 6. Kopiujemy opublikowaną aplikację
 COPY --from=build /app/publish ./
 
-# 7. Uruchomienie aplikacji
 ENTRYPOINT ["dotnet", "SportReserve_Emails.dll"]
