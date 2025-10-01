@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest 
+    runs-on: windows-latest
     
     steps:
       - uses: actions/checkout@v3
@@ -22,18 +22,14 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Pack local NuGet packages
-        run: dotnet pack SportReserve_Shared.csproj -o ./nupkg
-        working-directory: ./Server/SportReserve_Shared
-
       - name: Restore dependencies
-        run: dotnet restore SportReserve_Emails.csproj
-        working-directory: ./Server/Emails/SportReserve_Emails
+        run: dotnet restore SportReserve_Emails/SportReserve_Emails.csproj
+        working-directory: ./Server/Emails
 
       - name: Build
-        run: dotnet build SportReserve_Emails.csproj --no-restore
-        working-directory: ./Server/Emails/SportReserve_Emails
+        run: dotnet build SportReserve_Emails/SportReserve_Emails.csproj --no-restore
+        working-directory: ./Server/Emails
 
       - name: Test
-        run: dotnet test SportReserve_Emails.csproj --filter Category=Unit
-        working-directory: ./Server/Emails/SportReserve_Emails_UnitTests
+        run: dotnet test SportReserve_Emails_UnitTests/SportReserve_Emails_UnitTests.csproj --filter Category=Unit
+        working-directory: ./Server/Emails
