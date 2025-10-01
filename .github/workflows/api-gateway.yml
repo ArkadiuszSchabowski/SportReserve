@@ -4,11 +4,11 @@ on:
   push:
     branches: ["**"]
     paths:
-      - 'Server/ApiGateway/**'
+      - 'Server/ApiGateway/SportReserve_ApiGateway/**'
   pull_request:
     branches: ["main"]
     paths:
-      - 'Server/ApiGateway/**'
+      - 'Server/ApiGateway/SportReserve_ApiGateway/**'
 
 jobs:
   build:
@@ -18,18 +18,14 @@ jobs:
       - uses: actions/checkout@v3
           
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v4.0.1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-
-      - name: Pack local NuGet packages
-        run: dotnet pack SportReserve_Shared.csproj -o ./nupkg
-        working-directory: ./Server/SportReserve_Shared
 
       - name: Restore dependencies
         run: dotnet restore SportReserve_ApiGateway.csproj
         working-directory: ./Server/ApiGateway/SportReserve_ApiGateway
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build SportReserve_ApiGateway.csproj --no-restore
         working-directory: ./Server/ApiGateway/SportReserve_ApiGateway
