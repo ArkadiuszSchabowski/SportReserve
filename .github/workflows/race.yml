@@ -18,13 +18,9 @@ jobs:
       - uses: actions/checkout@v3
           
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v4.0.1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-
-      - name: Pack local NuGet packages
-        run: dotnet pack SportReserve_Shared.csproj -o ./nupkg
-        working-directory: ./Server/SportReserve_Shared
 
       - name: Restore dependencies
         run: dotnet restore SportReserve_Races.csproj
@@ -35,5 +31,5 @@ jobs:
         working-directory: ./Server/Races/SportReserve_Races
 
       - name: Test
-        run: dotnet test SportReserve_Races.csproj --filter Category=Unit
-        working-directory: ./Server/Races/SportReserve_Races
+        run: dotnet test SportReserve_Races_UnitTests.csproj --filter Category=Unit
+        working-directory: ./Server/Races/SportReserve_Races_UnitTests
