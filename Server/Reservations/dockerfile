@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY SportReserve_Reservations/*.csproj ./Reservations/SportReserve_Reservations/
+
+COPY nupkg ./nupkg/
+
+RUN dotnet restore ./Reservations/SportReserve_Reservations/SportReserve_Reservations.csproj \
+    --source ./nupkg \
+    --source https://api.nuget.org/v3/index.json
+
+COPY SportReserve_Reservations ./Reservations/SportReserve_Reservations
+
+RUN dotnet publish ./Reservations/SportReserve_Reservations/SportReserve_Reservations.csproj -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+
+COPY --from=build /app/publish ./
+
+ENTRYPOINT ["dotnet", "SportReserve_Reservations.dll"]
