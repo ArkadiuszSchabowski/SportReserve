@@ -4,11 +4,11 @@ on:
   push:
     branches: ["**"]
     paths:
-      - 'Server/SportReserve_Users/**'
+      - 'Server/Users/SportReserve_Users/**'
   pull_request:
     branches: ["main"]
     paths:
-      - 'Server/SportReserve_Users/**'
+      - 'Server/Users/SportReserve_Users/**'
 
 jobs:
   build:
@@ -18,18 +18,18 @@ jobs:
       - uses: actions/checkout@v3
           
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v4.0.1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
         run: dotnet restore SportReserve_Users.csproj
-        working-directory: ./Server/SportReserve_Users
+        working-directory: ./Server/Users/SportReserve_Users
 
       - name: Build
         run: dotnet build SportReserve_Users.csproj --no-restore
-        working-directory: ./Server/SportReserve_Users
+        working-directory: ./Server/Users/SportReserve_Users
 
       - name: Test
-        run: dotnet test SportReserve_Users.csproj --filter Category=Unit
-        working-directory: ./Server/SportReserve_Users
+        run: dotnet test SportReserve_Users_UnitTests.csproj --filter Category=Unit
+        working-directory: ./Server/Users/SportReserve_Users_UnitTests
