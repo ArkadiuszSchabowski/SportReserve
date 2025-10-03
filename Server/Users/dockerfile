@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY SportReserve_Users/*.csproj ./Users/SportReserve_Users/
+COPY SportReserve_Users_Db/*.csproj ./Users/SportReserve_Users_Db/
+
+COPY nupkg ./nupkg/
+
+RUN dotnet restore ./Users/SportReserve_Users/SportReserve_Users.csproj \
+    --source ./nupkg \
+    --source https://api.nuget.org/v3/index.json
+
+COPY SportReserve_Users ./Users/SportReserve_Users
+COPY SportReserve_Users_Db ./Users/SportReserve_Users_Db
+
+RUN dotnet publish ./Users/SportReserve_Users/SportReserve_Users.csproj -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+
+COPY --from=build /app/publish ./
+
+ENTRYPOINT ["dotnet", "SportReserve_Users.dll"]
