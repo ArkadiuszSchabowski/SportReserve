@@ -4,11 +4,11 @@ on:
   push:
     branches: ["**"]
     paths:
-      - 'Server/SportReserve_Reservations/**'
+      - 'Server/Reservations/SportReserve_Reservations/**'
   pull_request:
     branches: ["main"]
     paths:
-      - 'Server/SportReserve_Reservations/**'
+      - 'Server/Reservations/SportReserve_Reservations/**'
 
 jobs:
   build:
@@ -18,18 +18,18 @@ jobs:
       - uses: actions/checkout@v3
           
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v4.0.1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
         run: dotnet restore SportReserve_Reservations.csproj
-        working-directory: ./Server/SportReserve_Reservations
+        working-directory: ./Server/Reservations/SportReserve_Reservations
 
       - name: Build
         run: dotnet build SportReserve_Reservations.csproj --no-restore
-        working-directory: ./Server/SportReserve_Reservations
+        working-directory: ./Server/Reservations/SportReserve_Reservations
 
       - name: Test
-        run: dotnet test SportReserve_Reservations.csproj --filter Category=Unit
-        working-directory: ./Server/SportReserve_Reservations
+        run: dotnet test SportReserve_Reservations_UnitTests.csproj --filter Category=Unit
+        working-directory: ./Server/Reservations/SportReserve_Reservations_UnitTests
