@@ -49,6 +49,11 @@ namespace SportReserve_Shared.Middleware
                 context.Response.StatusCode = (int)httpException.StatusCode!;
                 await context.Response.WriteAsync(httpException.Message);
             }
+            catch (RabbitMqUnavailableException e)
+            {
+                context.Response.StatusCode = 503;
+                await context.Response.WriteAsync(e.Message);
+            }
             catch (Exception)
             {
                 context.Response.StatusCode = 500;
