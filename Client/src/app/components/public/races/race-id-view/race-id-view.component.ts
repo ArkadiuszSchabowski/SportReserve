@@ -18,10 +18,9 @@ export class RaceIdViewComponent {
     private raceService: RaceService
   ) {}
 
-  id: number | null = null;
+  id: number = 0;
   currentUser: string | null = null;
   race: GetRaceViewDto = {} as GetRaceViewDto;
-  raceIdString: string | null = null;
   raceSlug: string = '';
   raceUrl = environment.raceUrl;
 
@@ -31,25 +30,28 @@ export class RaceIdViewComponent {
   }
 
   getRace() {
-    this.getRaceIdFromUrl();
-    this.id = this.convertIdToNumber();
-    this.raceService.getRaceWithId(this.id).subscribe({
-      next: (response) => {
-        this.race = response;
-        this.raceSlug = this.convertToSlug(this.race.name);
-      },
-    });
+    const raceIdString = this.getRaceIdFromUrl();
+    if (raceIdString) {
+      const id: number = this.convertIdToNumber(raceIdString);
+      this.id = id;
+      this.raceService.getRaceViewWithId(id).subscribe({
+        next: (response) => {
+          this.race = response;
+          this.raceSlug = this.convertToSlug(this.race.name);
+        },
+      });
+    }
   }
-  convertIdToNumber(): number {
-    return parseInt(this.raceIdString!.toString());
+  convertIdToNumber(stringId: string): number {
+    return parseInt(stringId);
   }
-  
-  convertToSlug = (text: string): string => {
-  return text.toLowerCase().replace(/ /g, '-');
-};
 
-  getRaceIdFromUrl() {
-    this.raceIdString = this.activatedRoute.snapshot.paramMap.get('id');
+  convertToSlug = (text: string): string => {
+    return text.toLowerCase().replace(/ /g, '-');
+  };
+
+  getRaceIdFromUrl(): string | null {
+    return this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   goToForm() {
