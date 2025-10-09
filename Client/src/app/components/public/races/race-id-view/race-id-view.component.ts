@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { RaceService } from 'src/app/_services/race.service';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 
 @Component({

@@ -1,6 +1,6 @@
 import { AuthService } from 'src/app/_services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 import { PageEvent } from '@angular/material/paginator';
 import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
