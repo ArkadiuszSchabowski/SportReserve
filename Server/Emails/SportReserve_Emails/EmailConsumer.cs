@@ -2,6 +2,7 @@
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using SportReserve_Emails.Interfaces;
+using SportReserve_Shared.Exceptions;
 using SportReserve_Shared.Interfaces.Events;
 using SportReserve_Shared.Models.User;
 using System.Text;
@@ -16,13 +17,36 @@ namespace SportReserve_Emails
         {
             _emailService = emailService;
         }
+
         public void ConsumeUserRegisteredEvent()
         {
+            var rabbitMqHost = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost";
+
             ConnectionFactory factory = new();
-            factory.Uri = new Uri("amqp://guest:guest@localhost:5672");
+            factory.Uri = new Uri($"amqp://guest:guest@{rabbitMqHost}:5672");
             factory.ClientProvidedName = "Rabbit Receiver App";
 
-            IConnection cnn = factory.CreateConnection();
+            IConnection cnn = null!;
+            int retryCount = 10;
+
+            while (retryCount > 0)
+            {
+                try
+                {
+                    cnn = factory.CreateConnection();
+                    break;
+                }
+                catch
+                {
+                    retryCount--;
+                    Thread.Sleep(5000);
+                }
+            }
+
+            if (cnn == null)
+            {
+                throw new RabbitMqUnavailableException("Cannot connect to RabbitMQ.");
+            }
 
             IModel channel = cnn.CreateModel();
 
@@ -47,7 +71,6 @@ namespace SportReserve_Emails
                 {
                     return;
                 }
-
 
                 _emailService.SendRegisterEmail(userRegisteredEvent);
 
