@@ -89,7 +89,7 @@ export class ValentineRunFormComponent {
   getRace() {
     this.getRaceIdFromUrl();
     this.id = this.convertIdToNumber();
-    this.raceService.getRaceWithId(this.id).subscribe({
+    this.raceService.getRaceViewWithId(this.id).subscribe({
       next: (response) => {
         this.race = response;
         this.raceTraces = response.raceTraces;
