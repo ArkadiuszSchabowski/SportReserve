@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AnimalShelterRaceReservationDto } from '../models/reservation/animal-shelter-race-reservation-dto';
 import { ValentineRaceReservationDto } from '../models/reservation/valentine-race-reservation-dto';

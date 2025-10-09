@@ -1,4 +1,4 @@
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GetRaceDto } from '../models/race/get-race-dto';
 import { GetRaceViewDto } from '../models/race/get-race-view-dto';
