@@ -1,0 +1,94 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  users_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    build:
+      context: ./Server/Users
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "User123@"
+    ports:
+      - "1433:1433"
+
+  races_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    build:
+      context: ./Server/Races
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Race123@"
+    ports:
+      - "1434:1433"
+
+  reservation_db:
+    image: mongo
+    build:
+      context: ./Server/Reservations
+    ports:
+      - "27017:27017"
+
+  api_gateway:
+    build:
+      context: ./Server/ApiGateway
+    ports:
+      - "5000:5000"
+    depends_on:
+      - rabbitmq
+
+  user:
+    build:
+      context: ./Server/Users
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Test
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - rabbitmq
+      - users_db
+
+  race:
+    build:
+      context: ./Server/Races
+    ports:
+      - "5002:5002"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Test
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - rabbitmq
+      - races_db
+
+  email:
+    build:
+      context: ./Server/Emails
+    ports:
+      - "5003:5003"
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - rabbitmq
+
+  reservation:
+    build:
+      context: ./Server/Reservations
+    ports:
+      - "5004:5004"
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - rabbitmq
+      - reservation_db
+
+  client:
+    build:
+      context: ./Client
+    ports:
+      - "4200:80"
+    depends_on:
+      - api_gateway

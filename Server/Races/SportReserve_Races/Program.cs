@@ -19,6 +19,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+if (isDocker)
+{
+    builder.WebHost.UseUrls("http://*:5002");
+}
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

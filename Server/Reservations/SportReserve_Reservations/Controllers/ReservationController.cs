@@ -20,6 +20,17 @@ namespace SportReserve_Reservations.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] PaginationDto dto)
+        {
+            var userIdFromToken = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var reservations = await _service.Get(userIdFromToken!, dto);
+
+            return Ok(reservations);
+        }
+
+        [Authorize]
         [HttpPost("animal-shelter-race")]
         public async Task<IActionResult> AddAnimalShelterRace(AddAnimalShelterRace reservation)
         {
@@ -50,17 +61,6 @@ namespace SportReserve_Reservations.Controllers
             await _service.AddLondonHalfMarathonRace(reservation, userIdFromToken!);
 
             return Ok();
-        }
-
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] PaginationDto dto)
-        {
-            var userIdFromToken = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var reservations = await _service.Get(userIdFromToken!, dto);
-
-            return Ok(reservations);
         }
     }
 }

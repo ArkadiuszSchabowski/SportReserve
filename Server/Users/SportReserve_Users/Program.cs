@@ -22,6 +22,12 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+if (isDocker)
+{
+    builder.WebHost.UseUrls("http://*:5001");
+}
+
 builder.Services.AddControllers();
 
 builder.Services
