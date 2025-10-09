@@ -8,7 +8,7 @@ import { PaginationResult } from 'src/app/models/pagination/pagination-result';
 import { RaceService } from 'src/app/_services/race.service';
 import { ToastrService } from 'ngx-toastr';
 import { DialogUpdateRaceComponent } from '../../dialog/dialog-update-race/dialog-update-race.component';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { GetRaceDto } from 'src/app/models/race/get-race-dto';
 import { DialogAddRaceComponent } from '../../dialog/dialog-add-race/dialog-add-race.component';
 import { DialogAddRaceTraceComponent } from '../../dialog/dialog-add-race-trace/dialog-add-race-trace.component';
@@ -48,7 +48,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
     this.paginationDto.pageNumber = event.pageIndex + 1;
     this.paginationDto.pageSize = event.pageSize;
 
-    this.raceService.get(this.paginationDto).subscribe({
+    this.raceService.getRaces(this.paginationDto).subscribe({
       next: (response) => {
         this.paginationResult.results = response.results;
         this.paginationResult.totalCount = response.totalCount;
@@ -99,7 +99,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
   }
 
   getRaces() {
-    this.raceService.get(this.paginationDto).subscribe({
+    this.raceService.getRaces(this.paginationDto).subscribe({
       next: (response) => {
         this.paginationResult = response;
 
@@ -114,7 +114,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
     dialogRef.afterClosed().subscribe({
       next: () => {},
     }),
-      this.raceService.get(this.paginationDto).subscribe({
+      this.raceService.getRaces(this.paginationDto).subscribe({
         next: (response) => {
           this.paginationResult = response;
 
@@ -131,7 +131,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe({
       next: () => {
-        this.raceService.get(this.paginationDto).subscribe({
+        this.raceService.getRaces(this.paginationDto).subscribe({
           next: (response) => {
             this.paginationResult = response;
 
@@ -172,7 +172,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe({
       next: () => {
-        this.raceService.get(this.paginationDto).subscribe({
+        this.raceService.getRaces(this.paginationDto).subscribe({
           next: (response) => {
             this.paginationResult = response;
 

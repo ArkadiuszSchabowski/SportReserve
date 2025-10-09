@@ -1,5 +1,5 @@
 import { AuthService } from './auth.service';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GetUserDto } from '../models/user/get-user-dto';
 import { Injectable } from '@angular/core';

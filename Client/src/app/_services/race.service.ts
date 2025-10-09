@@ -1,4 +1,4 @@
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GetRaceDto } from '../models/race/get-race-dto';
 import { GetRaceViewDto } from '../models/race/get-race-view-dto';
@@ -24,7 +24,7 @@ export class RaceService {
     return this.http.post(this.apiUrl + 'api/race', dto, { headers });
   }
 
-  get(dto: PaginationDto): Observable<PaginationResult<GetRaceDto>> {
+  getRaces(dto: PaginationDto): Observable<PaginationResult<GetRaceDto>> {
     let params = new HttpParams()
       .set('PageNumber', dto.pageNumber.toString())
       .set('PageSize', dto.pageSize.toString());
@@ -34,7 +34,7 @@ export class RaceService {
     );
   }
 
-  getRaceView(
+  getViewRaces(
     dto: PaginationDto
   ): Observable<PaginationResult<GetRaceViewDto>> {
     let params = new HttpParams()
@@ -44,7 +44,6 @@ export class RaceService {
       .get<PaginationResult<GetRaceDto>>(this.apiUrl + 'api/race', { params })
       .pipe(
         map((races) => {
-          console.log(races);
           return {
             totalCount: races.totalCount,
             results: races.results.map((race) => {
@@ -70,8 +69,11 @@ export class RaceService {
         })
       );
   }
+  getRaceWithId(id: number): Observable<GetRaceDto> {
+    return this.http.get<GetRaceDto>(this.apiUrl + `api/race/${id}`);
+  }
 
-  getRaceWithId(id: number): Observable<GetRaceViewDto> {
+  getRaceViewWithId(id: number): Observable<GetRaceViewDto> {
     return this.http.get<GetRaceDto>(this.apiUrl + `api/race/${id}`).pipe(
       map((race) => {
         return {

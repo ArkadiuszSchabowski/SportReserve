@@ -1,6 +1,6 @@
 import { AuthService } from 'src/app/_services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 import { PageEvent } from '@angular/material/paginator';
 import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
@@ -34,7 +34,7 @@ export class RacesComponent implements OnInit {
     this.paginationDto.pageNumber = event.pageIndex + 1;
     this.paginationDto.pageSize = event.pageSize;
 
-    this.raceService.getRaceView(this.paginationDto).subscribe({
+    this.raceService.getViewRaces(this.paginationDto).subscribe({
       next: (response) => {
         this.paginationResult.results = response.results;
         this.paginationResult.totalCount = response.totalCount;
@@ -53,7 +53,7 @@ export class RacesComponent implements OnInit {
   getRaces() {
     let dto = new PaginationDto();
 
-    this.raceService.getRaceView(dto).subscribe({
+    this.raceService.getViewRaces(dto).subscribe({
       next: (response) => {
         this.paginationResult = response;
       },

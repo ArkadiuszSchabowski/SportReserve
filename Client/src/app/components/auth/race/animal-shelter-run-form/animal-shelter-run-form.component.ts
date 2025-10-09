@@ -1,10 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +7,7 @@ import { RaceService } from 'src/app/_services/race.service';
 import { ReservationService } from 'src/app/_services/reservation.service';
 import { TokenService } from 'src/app/_services/token.service';
 import { UserService } from 'src/app/_services/user.service';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { AnimalShelterRaceForm } from 'src/app/models/forms/animal-shelter-race-form';
 import { UserInformationForm } from 'src/app/models/forms/user-information-form';
 import { GetRaceTraceViewDto } from 'src/app/models/race/get-race-trace-view-dto';
@@ -36,7 +31,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
     private reservationService: ReservationService,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   id: number | null = null;
   email: string = '';
@@ -95,23 +90,25 @@ export class AnimalShelterRunFormComponent implements OnInit {
   }
 
   getRace() {
-    this.getRaceIdFromUrl();
-    this.id = this.convertIdToNumber();
-    this.raceService.getRaceWithId(this.id).subscribe({
-      next: (response) => {
-        this.race = response;
-        this.raceTraces = response.raceTraces;
-        this.raceInfoForm.controls.race.patchValue(this.race.name);
-        this.raceInfoForm.controls.race.disable();
-      },
-    });
+    const stringRaceId = this.getRaceIdFromUrl();
+    if (stringRaceId) {
+      const id = this.convertIdToNumber(stringRaceId);
+      this.raceService.getRaceViewWithId(id).subscribe({
+        next: (response) => {
+          this.race = response;
+          this.raceTraces = response.raceTraces;
+          this.raceInfoForm.controls.race.patchValue(this.race.name);
+          this.raceInfoForm.controls.race.disable();
+        },
+      });
+    }
   }
-  convertIdToNumber(): number {
-    return parseInt(this.raceIdString!.toString());
+  convertIdToNumber(stringId: string): number {
+    return parseInt(stringId);
   }
 
-  getRaceIdFromUrl() {
-    this.raceIdString = this.activatedRoute.snapshot.paramMap.get('id');
+  getRaceIdFromUrl(): string | null {
+    return this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   getProfileInformation() {
@@ -140,7 +137,6 @@ export class AnimalShelterRunFormComponent implements OnInit {
       this.raceInfoForm.markAllAsTouched();
       return;
     }
-    console.log(this.raceInfoForm.controls);
     this.stepper.next();
   }
 
@@ -168,6 +164,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
         this.router.navigateByUrl('/profile/reservations');
         this.toastr.success('Reserved successfully.');
       },
+      error: error => console.log(error)
     });
   }
   get dateOfBirthError(): string | null {

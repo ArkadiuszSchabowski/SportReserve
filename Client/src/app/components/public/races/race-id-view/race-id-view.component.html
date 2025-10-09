@@ -1,7 +1,7 @@
 <div id="main-container" class="component-container">
   <div id="race-container" class="race-container">
     <div class="left-image-container">
-      <img id="poster-image" [src]="raceUrl + race.posterUrl"/>
+      <img id="poster-image" *ngIf="race.posterUrl" [src]="raceUrl + race.posterUrl"/>
     </div>
     <div class="right-information-container">
       <div class="bold white-text">{{ race.name }}</div>
