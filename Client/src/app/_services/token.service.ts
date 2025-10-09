@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
