@@ -4,7 +4,7 @@
     *ngFor="let race of paginationResult.results"
   >
     <div class="left-image-container">
-      <img id="poster" class="poster-button" [src]="raceUrl + race.posterUrl"/>
+      <img id="poster" class="poster-button" *ngIf="race.posterUrl" [src]="raceUrl + race.posterUrl"/>
     </div>
     <div class="right-information-container">
       <div class="bold">{{ race.name }}</div>
