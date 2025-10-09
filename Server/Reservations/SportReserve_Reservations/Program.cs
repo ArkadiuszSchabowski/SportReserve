@@ -17,6 +17,44 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+if (isDocker)
+{
+    builder.WebHost.UseUrls("http://*:5004");
+
+    builder.Services.AddHttpClient("UserService", client =>
+    {
+        client.BaseAddress = new Uri("http://user:5001/api/user/");
+    });
+
+    builder.Services.AddHttpClient("RaceService", client =>
+    {
+        client.BaseAddress = new Uri("http://race:5002/api/race/");
+    });
+
+    builder.Services.AddHttpClient("RaceTraceService", client =>
+    {
+        client.BaseAddress = new Uri("http://race:5002/api/racetrace/");
+    });
+}
+else
+{
+    builder.Services.AddHttpClient("UserService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5001/api/user/");
+    });
+
+    builder.Services.AddHttpClient("RaceService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5002/api/race/");
+    });
+
+    builder.Services.AddHttpClient("RaceTraceService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5002/api/racetrace/");
+    });
+}
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -71,21 +109,6 @@ builder.Services.AddScoped<IValentineRaceReservationValidator, ValentineRaceRese
 builder.Services.AddScoped<ILondonHalfMarathonRaceReservationValidator, LondonHalfMarathonRaceReservationValidator>();
 builder.Services.AddScoped<IClientFactory, HttpClientFactory>();
 
-builder.Services.AddHttpClient("UserService", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:5001/api/user/");
-});
-
-builder.Services.AddHttpClient("RaceService", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:5002/api/race/");
-});
-
-builder.Services.AddHttpClient("RaceTraceService", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:5002/api/racetrace/");
-});
-
 BsonClassMap.RegisterClassMap<ReservationBase>(cm =>
 {
     cm.AutoMap();
@@ -99,7 +122,7 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 var app = builder.Build();
 
-//app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseCors("ReservationPolicy");
 

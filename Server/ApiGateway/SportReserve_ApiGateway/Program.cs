@@ -14,28 +14,56 @@ builder.Services
         options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     });
 
+var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+if (isDocker)
+{
+    builder.WebHost.UseUrls("http://*:5000");
+
+    builder.Services.AddHttpClient("UserService", client =>
+    {
+        client.BaseAddress = new Uri("http://user:5001/api/user/");
+    });
+
+    builder.Services.AddHttpClient("RaceService", client =>
+    {
+        client.BaseAddress = new Uri("http://race:5002/api/race/");
+    });
+
+    builder.Services.AddHttpClient("RaceTraceService", client =>
+    {
+        client.BaseAddress = new Uri("http://race:5002/api/racetrace/");
+    });
+
+    builder.Services.AddHttpClient("EmailService", client =>
+    {
+        client.BaseAddress = new Uri("http://email:5003/api/email/");
+    });
+}
+else
+{
+    builder.Services.AddHttpClient("UserService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5001/api/user/");
+    });
+
+    builder.Services.AddHttpClient("RaceService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5002/api/race/");
+    });
+
+    builder.Services.AddHttpClient("RaceTraceService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5002/api/racetrace/");
+    });
+
+    builder.Services.AddHttpClient("EmailService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5003/api/email/");
+    });
+}
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddHttpClient("UserService", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:5001/api/user/");
-});
-
-builder.Services.AddHttpClient("RaceService", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:5002/api/race/");
-});
-
-builder.Services.AddHttpClient("RaceTraceService", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:5002/api/racetrace/");
-});
-
-builder.Services.AddHttpClient("EmailService", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:5003/api/email/");
-});
 
 builder.Services.AddCors(options =>
 {
@@ -66,6 +94,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
