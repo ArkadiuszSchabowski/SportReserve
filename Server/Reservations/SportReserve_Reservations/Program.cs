@@ -109,6 +109,9 @@ builder.Services.AddScoped<IValentineRaceReservationValidator, ValentineRaceRese
 builder.Services.AddScoped<ILondonHalfMarathonRaceReservationValidator, LondonHalfMarathonRaceReservationValidator>();
 builder.Services.AddScoped<IClientFactory, HttpClientFactory>();
 
+builder.Services.AddSingleton<IMongoDbConfig, MongoDbConfig>();
+builder.Services.AddScoped<IReservationAccess, ReservationAccess>();
+
 BsonClassMap.RegisterClassMap<ReservationBase>(cm =>
 {
     cm.AutoMap();
@@ -122,7 +125,7 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 var app = builder.Build();
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
+//app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseCors("ReservationPolicy");
 
