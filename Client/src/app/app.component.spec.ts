@@ -8,11 +8,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 describe('AppComponent', () => {
   let toastrService: ToastrService;
 
-  class MockToastrService {
-    success(message: string) {
-      console.log(message);
-    }
-  }
+  class MockToastrService {}
 
   beforeEach(() =>
     TestBed.configureTestingModule({

@@ -54,7 +54,6 @@ export class ModeratorPanelRacesComponent implements OnInit {
         this.paginationResult.totalCount = response.totalCount;
         this.allRacesResult.results = response.results.slice();
       },
-      error: (error) => console.log(error),
     });
   }
 

@@ -154,8 +154,6 @@ export class LondonRunFormComponent {
       medalGratification: this.raceInfoForm.value.medalGratification!,
     };
 
-    console.log(dto);
-
     this.reservationService
       .sendLondonHalfMarathonRaceReservation(dto)
       .subscribe({

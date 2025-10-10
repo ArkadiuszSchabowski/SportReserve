@@ -149,8 +149,6 @@ export class ValentineRunFormComponent {
       wantsFinisherPhoto: this.raceInfoForm.value.wantsFinisherPhoto!,
     };
 
-    console.log(dto);
-
     this.reservationService.sendValentineRaceReservation(dto).subscribe({
       next: () => {
         this.router.navigateByUrl('/profile/reservations');

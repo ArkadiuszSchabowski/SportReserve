@@ -164,7 +164,6 @@ export class AnimalShelterRunFormComponent implements OnInit {
         this.router.navigateByUrl('/profile/reservations');
         this.toastr.success('Reserved successfully.');
       },
-      error: error => console.log(error)
     });
   }
   get dateOfBirthError(): string | null {
