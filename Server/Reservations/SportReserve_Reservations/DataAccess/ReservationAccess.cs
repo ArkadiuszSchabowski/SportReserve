@@ -5,13 +5,17 @@ namespace SportReserve_Reservations.DataAccess
 {
     public class ReservationAccess : IReservationAccess
     {
-        public string connectionString = "mongodb://127.0.0.1:27017";
-        public string databaseName = "reservationDb";
+        private readonly IMongoDbConfig _mongoDbConfig;
 
+        public ReservationAccess(IMongoDbConfig mongoDbConfig)
+        {
+            _mongoDbConfig = mongoDbConfig;
+        }
         public IMongoCollection<T> ConnectToMongo<T>(string collectionName)
         {
-            var client = new MongoClient(connectionString);
-            var db = client.GetDatabase(databaseName);
+            var configuration = _mongoDbConfig.GetConfiguration();
+            var client = new MongoClient(configuration.ConnectionString);
+            var db = client.GetDatabase(configuration.DatabaseName);
             return db.GetCollection<T>(collectionName);
         }
     }

@@ -119,7 +119,6 @@ export class RegisterComponent {
         this.router.navigateByUrl('/login');
       },
       error: (error) => {
-        console.log(error);
         if (error.status === 409) {
           this.serverError = error.error;
           return;
@@ -156,7 +155,6 @@ export class RegisterComponent {
       },
       error: (error) => {
         if (error.status === 409) {
-          console.log(error);
           this.serverError = error.error.message;
           return;
         }

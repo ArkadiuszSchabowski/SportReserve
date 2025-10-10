@@ -70,6 +70,7 @@ services:
     ports:
       - "5003:5003"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Test
       - RABBITMQ_HOST=rabbitmq
     depends_on:
       - rabbitmq
@@ -80,6 +81,7 @@ services:
     ports:
       - "5004:5004"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Test
       - RABBITMQ_HOST=rabbitmq
     depends_on:
       - rabbitmq

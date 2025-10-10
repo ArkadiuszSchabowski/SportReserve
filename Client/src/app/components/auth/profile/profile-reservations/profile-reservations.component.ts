@@ -25,7 +25,6 @@ export class ProfileReservationsComponent implements OnInit {
   
       this.reservationService.get(this.dto).subscribe({
         next: (response) => {
-          console.log(response)
           this.paginationResult.results = response.results;
           this.paginationResult.totalCount = response.totalCount;
         },
@@ -37,7 +36,6 @@ export class ProfileReservationsComponent implements OnInit {
       next: (response) => {
         if (response) {
           this.paginationResult = response;
-          console.log(response);
         }
       },
     });
