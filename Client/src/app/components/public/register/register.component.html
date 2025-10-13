@@ -30,6 +30,16 @@
                   <div class="error" *ngIf="emailError">
                     {{ emailError }}
                   </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      !repeatPasswordError &&
+                      !validationModelErrors?.length &&
+                      serverError
+                    "
+                  >
+                    {{ serverError }}
+                  </div>
                 </div>
                 <mat-form-field>
                   <mat-label>Password</mat-label>
@@ -102,17 +112,6 @@
                     "
                   >
                     {{ validationModelErrors?.[0] }}
-                  </div>
-
-                  <div
-                    class="error"
-                    *ngIf="
-                      !repeatPasswordError &&
-                      !validationModelErrors?.length &&
-                      serverError
-                    "
-                  >
-                    {{ serverError }}
                   </div>
                 </div>
                 <button
