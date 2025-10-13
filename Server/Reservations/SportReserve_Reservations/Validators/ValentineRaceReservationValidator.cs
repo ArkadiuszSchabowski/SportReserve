@@ -1,5 +1,6 @@
 ﻿using SportReserve_Reservations.Interfaces;
 using SportReserve_Shared.Models.Race;
+using SportReserve_Shared.Models.Reservation.Add;
 
 namespace SportReserve_Reservations.Validators
 {
@@ -12,7 +13,7 @@ namespace SportReserve_Reservations.Validators
             _reservationValidator = reservationValidator;
         }
 
-        public void ValidateValentineRaceReservation(GetRaceDto getRaceDto, GetRaceTraceDto getRaceTraceDto, string userId, string userIdFromToken)
+        public void ValidateValentineRaceReservation(AddValentineRace reservation, GetRaceDto getRaceDto, GetRaceTraceDto getRaceTraceDto, string userId, string userIdFromToken)
         {
             string raceName = "Valentine Race with Heart";
 
