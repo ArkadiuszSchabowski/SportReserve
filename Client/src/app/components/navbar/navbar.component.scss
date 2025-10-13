@@ -3,7 +3,7 @@
 
 #navbar-container {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   width: 100vw;
   height: 100%;
@@ -14,13 +14,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
   height: 100%;
 }
 
 #navbar-mobile-button-menu {
   color: white !important;
   border: none;
+  margin-right: 30px;
 }
 
 .navbar-mobile-button {
@@ -30,20 +30,15 @@
 
 .navbar-web-button {
   display: none;
-  flex: 1;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 80%;
   min-width: 150px;
   font-size: 16px;
   font-weight: bold;
   border: none;
-  border-right: 2px solid white;
+  border-radius: 25px;
   background-color: mat.get-color-from-palette(theme.$primary);
-}
-
-.navbar-web-left-edge-button {
-  border-left: 2px solid white;
 }
 
 .navbar-mobile-button:hover,
@@ -56,6 +51,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #navbar-container {
+    justify-content: center;
     padding-left: 0;
   }
   #navbar-mobile-button-menu {
@@ -69,6 +65,7 @@
 
 @media screen and (min-width: 1200px) {
   #navbar-container {
+    justify-content: center;
     padding-left: 0;
   }
   #navbar-mobile-button-menu {
