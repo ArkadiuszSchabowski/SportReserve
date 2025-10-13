@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SportReserve_Shared.Exceptions;
+﻿using SportReserve_Shared.Exceptions;
 using SportReserve_Shared.Interfaces;
-using SportReserve_Shared.Models;
 
 namespace SportReserve_ApiGateway.Helpers
 {
@@ -19,6 +17,10 @@ namespace SportReserve_ApiGateway.Helpers
                 else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                 {
                     throw new ForbiddenException("You don't have permission to perform this action.");
+                }
+                else if(response.StatusCode == System.Net.HttpStatusCode.Conflict)
+                {
+                    throw new ConflictException(responseBody);
                 }
                 else
                 {
