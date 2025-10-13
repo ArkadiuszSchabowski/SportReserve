@@ -51,6 +51,11 @@ namespace SportReserve_Races.Validators
             {
                 throw new BadRequestException("Parent race id should be greater than 0.");
             }
+
+            if (dto.Slots < 10 || dto.Slots > 10000)
+            {
+                throw new BadRequestException("Race slots must be between 10 and 10000.");
+            }
         }
     }
 }

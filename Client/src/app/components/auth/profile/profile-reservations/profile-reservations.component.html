@@ -1,5 +1,12 @@
 <div id="main-container">
-  <div id="reservation-container" *ngIf="paginationResult">
+  <label id="title-label" class="title-label">RESERVATIONS</label>
+  <div
+    id="reservation-container-empty"
+    *ngIf="paginationResult && paginationResult.results?.length === 0"
+  >
+    You don't have any reservations.
+  </div>
+  <div id="reservation-container" *ngIf="paginationResult && paginationResult.results?.length > 0">
     <div
       class="reservation-item"
       *ngFor="let reservation of paginationResult.results"
@@ -38,7 +45,8 @@
       </div>
     </div>
   </div>
-  <mat-paginator *ngIf="paginationResult"
+  <mat-paginator
+    *ngIf="paginationResult && paginationResult.results?.length > 0"
     id="mat-paginator"
     class="select-white-theme"
     [length]="paginationResult.totalCount"

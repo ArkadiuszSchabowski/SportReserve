@@ -2,6 +2,7 @@
 using SportReserve_Reservations.Interfaces;
 using SportReserve_Reservations.Validators;
 using SportReserve_Shared.Models.Race;
+using SportReserve_Shared.Models.Reservation.Add;
 
 namespace SportReserve_Reservations_UnitTests.Validators
 {
@@ -20,13 +21,14 @@ namespace SportReserve_Reservations_UnitTests.Validators
         {
             var raceValidator = new LondonHalfMarathonRaceReservationValidator(_mockReservationValidator.Object);
 
+            var reservation = new AddLondonHalfMarathonRace();
             var getRaceDto = new GetRaceDto();
             var getRaceTraceDto = new GetRaceTraceDto();
             var raceName = "London Half-Marathon Race";
             var userId = "1";
             var userIdFromToken = "1";
 
-            raceValidator.ValidateLondonHalfMarathonRaceReservation(getRaceDto, getRaceTraceDto, userId, userIdFromToken);
+            raceValidator.ValidateLondonHalfMarathonRaceReservation(reservation, getRaceDto, getRaceTraceDto, userId, userIdFromToken);
 
             _mockReservationValidator.Verify(x => x.ValidateRace(getRaceDto, getRaceTraceDto, raceName, userId, userIdFromToken), Times.Once);
         }

@@ -125,7 +125,7 @@ export class RegisterComponent {
         }
         if (error.status === 400) {
           if (error.error) {
-            this.serverError = error.error.message;
+            this.serverError = error.error;
             return;
           }
         }
@@ -143,6 +143,7 @@ export class RegisterComponent {
       return;
     }
 
+    
     let credentials: RegisterStepOneDto = {
       email: this.loginDataForm.get('email')!.value,
       password: this.loginDataForm.get('password')!.value,
@@ -155,7 +156,7 @@ export class RegisterComponent {
       },
       error: (error) => {
         if (error.status === 409) {
-          this.serverError = error.error.message;
+          this.serverError = error.error;
           return;
         }
         this.validationModelErrors = error;

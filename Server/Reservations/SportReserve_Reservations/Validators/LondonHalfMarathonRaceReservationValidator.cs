@@ -1,5 +1,6 @@
 ﻿using SportReserve_Reservations.Interfaces;
 using SportReserve_Shared.Models.Race;
+using SportReserve_Shared.Models.Reservation.Add;
 
 namespace SportReserve_Reservations.Validators
 {
@@ -12,7 +13,7 @@ namespace SportReserve_Reservations.Validators
             _reservationValidator = reservationValidator;
         }
 
-        public void ValidateLondonHalfMarathonRaceReservation(GetRaceDto getRaceDto, GetRaceTraceDto getRaceTraceDto, string userId, string userIdFromToken)
+        public void ValidateLondonHalfMarathonRaceReservation(AddLondonHalfMarathonRace reservation, GetRaceDto getRaceDto, GetRaceTraceDto getRaceTraceDto, string userId, string userIdFromToken)
         {
             string raceName = "London Half-Marathon Race";
 

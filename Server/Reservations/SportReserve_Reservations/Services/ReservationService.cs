@@ -59,7 +59,7 @@ namespace SportReserve_Reservations.Services
             var getRaceDto = JsonConvert.DeserializeObject<GetRaceDto>(raceResponseBody);
             var getRaceTraceDto = JsonConvert.DeserializeObject<GetRaceTraceDto>(raceTraceResponseBody);
 
-            _animalShelterRaceReservationValidator.ValidateAnimalShelterRaceReservation(getRaceDto!, getRaceTraceDto!, userId, userIdFromToken);
+            _animalShelterRaceReservationValidator.ValidateAnimalShelterRaceReservation(reservation, getRaceDto!, getRaceTraceDto!, userId, userIdFromToken);
 
             var collection = _reservationAccess.ConnectToMongo<AnimalShelterRace>(collectionName);
 
@@ -110,7 +110,7 @@ namespace SportReserve_Reservations.Services
             var getRaceDto = JsonConvert.DeserializeObject<GetRaceDto>(raceResponseBody);
             var getRaceTraceDto = JsonConvert.DeserializeObject<GetRaceTraceDto>(raceTraceResponseBody);
 
-            _londonHalfMarathonRaceReservationValidator.ValidateLondonHalfMarathonRaceReservation(getRaceDto!, getRaceTraceDto!, userId, userIdFromToken);
+            _londonHalfMarathonRaceReservationValidator.ValidateLondonHalfMarathonRaceReservation(reservation, getRaceDto!, getRaceTraceDto!, userId, userIdFromToken);
 
             var collection = _reservationAccess.ConnectToMongo<LondonHalfMarathonRace>(collectionName);
 
@@ -161,7 +161,7 @@ namespace SportReserve_Reservations.Services
             var getRaceDto = JsonConvert.DeserializeObject<GetRaceDto>(raceResponseBody);
             var getRaceTraceDto = JsonConvert.DeserializeObject<GetRaceTraceDto>(raceTraceResponseBody);
 
-            _valentineRaceReservationValidator.ValidateValentineRaceReservation(getRaceDto!, getRaceTraceDto!, userId, userIdFromToken);
+            _valentineRaceReservationValidator.ValidateValentineRaceReservation(reservation, getRaceDto!, getRaceTraceDto!, userId, userIdFromToken);
 
             var collection = _reservationAccess.ConnectToMongo<ValentineRace>(collectionName);
 

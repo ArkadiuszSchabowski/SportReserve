@@ -34,6 +34,7 @@ textarea {
   flex-direction: column;
   justify-content: center;
   width: 450px;
+  margin: 20px 0;
 }
 
 #contact-image {
@@ -48,14 +49,14 @@ textarea {
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   textarea {
-    min-height: 200px !important;
+    min-height: 180px !important;
     max-height: 230px !important;
   }
 }
 
 @media screen and (min-width: 1200px) {
   textarea {
-    min-height: 200px !important;
+    min-height: 180px !important;
     max-height: 230px !important;
   }
 }
