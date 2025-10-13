@@ -54,6 +54,10 @@ namespace SportReserve_Races.Validators
             {
                 throw new BadRequestException($"Race start date is after the allowed maximum date of 2035-01-01.");
             }
+            if (dto.EntryFeeGBP < 0 || dto.EntryFeeGBP > 250)
+            {
+                throw new BadRequestException("Race entry fee cannot must be between 0 GBP and 250 GBP.");
+            }
         }
 
         public void ValidateUpdatedRace(UpdateRaceDto? dto)
@@ -76,6 +80,10 @@ namespace SportReserve_Races.Validators
             if (dto.DateOfStart > DateOnly.Parse("2035-01-01"))
             {
                 throw new BadRequestException($"Race start date is after the allowed maximum date of 2035-01-01.");
+            }
+            if (dto.EntryFeeGBP < 0 || dto.EntryFeeGBP > 250)
+            {
+                throw new BadRequestException("Race entry fee cannot must be between 0 GBP and 250 GBP.");
             }
         }
     }
