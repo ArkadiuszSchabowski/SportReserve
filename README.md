@@ -3,6 +3,8 @@
 **About the Project:**
 Application for runners — search for interesting races, register for events, and manage your sports calendar.  
 
+<img width="900" alt="sportreserve" src="https://github.com/user-attachments/assets/7c068a40-ea45-4dec-9af9-053579537eb9" />
+
 Key features:
 - Role-Based Access Control (RBAC) — simple and clear management of access and permissions for users, managers, and admins.
 - Asynchronous email sending with RabbitMQ — a reliable system that makes sure every email gets delivered, even when the app is busy, without slowing it down.
