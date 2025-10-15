@@ -1,4 +1,4 @@
-# 🏃‍♀️🏃‍♂️ Sport Reserve
+# 🏃‍♂️ Sport Reserve
 
 **About the Project:**
 Application for runners — search for interesting races, register for events, and manage your sports calendar.  
@@ -8,6 +8,10 @@ Application for runners — search for interesting races, register for events, a
 ---
 
 <img width="900" alt="sportreserve1" src="https://github.com/user-attachments/assets/41fbded3-bd15-41a3-8bce-ad45b7d664ce" />
+
+---
+
+<img width="900" alt="diagram" src="https://github.com/user-attachments/assets/55b58e06-affe-4e9b-a16a-f8e8c5ff6b9b" />
 
 ---
 
