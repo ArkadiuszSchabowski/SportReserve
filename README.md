@@ -20,7 +20,7 @@ Key features:
 - Role-Based Access Control (RBAC) — simple and clear management of access and permissions for users, managers, and admins.
 - Asynchronous email sending with RabbitMQ — ensuring reliable delivery and preventing delays in the main application.
 - Modular microservices with a Shared package — common code is kept in one place, which makes Docker builds faster and easier.
-- API Gateway as a proxy — one central point for all microservices, handling routing, security, and traffic control.
+- API Gateway as a proxy — API Gateway serving as a central entry point for routing and security.
 - Two databases for different needs — MSSQL for user and race data, MongoDB for reservations, giving better speed and flexibility.
 - CI/CD and Docker Compose — automated build, test, and deployment to help release updates quickly and reliably.
 
