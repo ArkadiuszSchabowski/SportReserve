@@ -4,10 +4,11 @@
 Application for runners — search for interesting races, register for events, and manage your sports calendar.  
 
 <img width="900" alt="sportreserve" src="https://github.com/user-attachments/assets/7c068a40-ea45-4dec-9af9-053579537eb9" />
+
 ---
+
 <img width="900" alt="sportreserve1" src="https://github.com/user-attachments/assets/41fbded3-bd15-41a3-8bce-ad45b7d664ce" />
----
-<img width="900" alt="sportreserve2" src="https://github.com/user-attachments/assets/f5525255-31b3-46b5-ac7f-f9bb5a45e3ce" />
+
 ---
 
 Key features:
