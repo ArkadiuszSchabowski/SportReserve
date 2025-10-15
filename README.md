@@ -11,7 +11,7 @@ Application for runners — search for interesting races, register for events, a
 
 ---
 
-<img width="900"  height="500" alt="diagram" src="https://github.com/user-attachments/assets/e5d582c6-cfc3-4f4c-aad2-216bc5132e6d" />
+<img width="900"  height="400" alt="diagram" src="https://github.com/user-attachments/assets/e5d582c6-cfc3-4f4c-aad2-216bc5132e6d" />
 
 
 ---
