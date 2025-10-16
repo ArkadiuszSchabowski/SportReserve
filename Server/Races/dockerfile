@@ -4,6 +4,7 @@ WORKDIR /src
 COPY SportReserve_Races/*.csproj ./Races/SportReserve_Races/
 COPY SportReserve_Races_Db/*.csproj ./Races/SportReserve_Races_Db/
 
+COPY NuGet.config ./
 COPY nupkg ./nupkg/
 
 RUN dotnet restore ./Races/SportReserve_Races/SportReserve_Races.csproj \

@@ -3,6 +3,7 @@ WORKDIR /src
 
 COPY SportReserve_Reservations/*.csproj ./Reservations/SportReserve_Reservations/
 
+COPY NuGet.config ./
 COPY nupkg ./nupkg/
 
 RUN dotnet restore ./Reservations/SportReserve_Reservations/SportReserve_Reservations.csproj \

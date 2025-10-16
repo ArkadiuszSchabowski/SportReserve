@@ -3,6 +3,7 @@ WORKDIR /src
 
 COPY SportReserve_ApiGateway/*.csproj ./SportReserve_ApiGateway/
 
+COPY NuGet.config ./
 COPY nupkg ./nupkg/
 
 RUN dotnet restore ./SportReserve_ApiGateway/SportReserve_ApiGateway.csproj \

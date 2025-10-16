@@ -3,6 +3,7 @@ WORKDIR /src
 
 COPY SportReserve_Emails/*.csproj ./SportReserve_Emails/
 
+COPY NuGet.config ./
 COPY nupkg ./nupkg/
 
 RUN dotnet restore ./SportReserve_Emails/SportReserve_Emails.csproj \
