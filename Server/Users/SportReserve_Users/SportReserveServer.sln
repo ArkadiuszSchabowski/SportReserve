@@ -29,15 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Shared", "..\.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportReserve_Shared_UnitTests", "..\..\SportReserve_Shared_UnitTests\SportReserve_Shared_UnitTests.csproj", "{72D25160-C93F-FE9D-E1EE-D83792DC2A43}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\ApiGateway\nupkg\SportReserve_Shared.1.0.3.nupkg = ..\..\ApiGateway\nupkg\SportReserve_Shared.1.0.3.nupkg
-		..\..\Emails\nupkg\SportReserve_Shared.1.0.3.nupkg = ..\..\Emails\nupkg\SportReserve_Shared.1.0.3.nupkg
-		..\..\Races\nupkg\SportReserve_Shared.1.0.3.nupkg = ..\..\Races\nupkg\SportReserve_Shared.1.0.3.nupkg
-		..\..\Reservations\nupkg\SportReserve_Shared.1.0.3.nupkg = ..\..\Reservations\nupkg\SportReserve_Shared.1.0.3.nupkg
-		..\nupkg\SportReserve_Shared.1.0.3.nupkg = ..\nupkg\SportReserve_Shared.1.0.3.nupkg
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
