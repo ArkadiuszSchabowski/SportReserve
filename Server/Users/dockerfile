@@ -4,6 +4,7 @@ WORKDIR /src
 COPY SportReserve_Users/*.csproj ./Users/SportReserve_Users/
 COPY SportReserve_Users_Db/*.csproj ./Users/SportReserve_Users_Db/
 
+COPY NuGet.config ./
 COPY nupkg ./nupkg/
 
 RUN dotnet restore ./Users/SportReserve_Users/SportReserve_Users.csproj \
