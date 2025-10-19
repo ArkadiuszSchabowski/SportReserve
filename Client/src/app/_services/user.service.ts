@@ -21,7 +21,7 @@ export class UserService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<GetUserDto>(this.apiUrl + `api/user/${id}`, {
+    return this.http.get<GetUserDto>(this.apiUrl + `user/${id}`, {
       headers,
     });
   }
@@ -32,7 +32,7 @@ export class UserService {
 
     const params = new HttpParams().set('email', email);
 
-    return this.http.get<GetUserDto>(this.apiUrl + 'api/user/by-email', {
+    return this.http.get<GetUserDto>(this.apiUrl + 'user/by-email', {
       params,
       headers,
     });
@@ -42,12 +42,12 @@ export class UserService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<GetUserDto[]>(this.apiUrl + 'api/user', { headers });
+    return this.http.get<GetUserDto[]>(this.apiUrl + 'user', { headers });
   }
 
   login(loginDto: LoginDto) {
     return this.http
-      .post<TokenDto>(this.apiUrl + 'api/user/login', loginDto)
+      .post<TokenDto>(this.apiUrl + 'user/login', loginDto)
       .pipe(
         map((response) => {
           if (response.token) {
@@ -59,7 +59,7 @@ export class UserService {
   }
 
   register(dto: RegisterDto) {
-    return this.http.post<string>(this.apiUrl + 'api/user/register', dto);
+    return this.http.post<string>(this.apiUrl + 'user/register', dto);
   }
   remove(id: number) {
     const token = localStorage.getItem('token');
@@ -69,7 +69,7 @@ export class UserService {
   }
   validateRegisterStepOne(dto: RegisterStepOneDto) {
     return this.http.post(
-      this.apiUrl + 'api/user/register/step1/validate',
+      this.apiUrl + 'user/register/step1/validate',
       dto
     );
   }

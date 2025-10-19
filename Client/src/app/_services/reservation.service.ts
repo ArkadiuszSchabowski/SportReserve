@@ -27,7 +27,7 @@ export class ReservationService {
       .set('PageNumber', dto.pageNumber.toString())
       .set('PageSize', dto.pageSize.toString());
 
-    return this.http.get<PaginationResult<ReservationBase>>(this.reservationUrl + `api/reservation`, { headers, params});
+    return this.http.get<PaginationResult<ReservationBase>>(this.reservationUrl + `reservation`, { headers, params});
   }
 
   sendAnimalShelterRaceReservation(dto: AnimalShelterRaceReservationDto) {
@@ -35,7 +35,7 @@ export class ReservationService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.post(
-      this.reservationUrl + 'api/reservation/animal-shelter-race',
+      this.reservationUrl + 'reservation/animal-shelter-race',
       dto,
       { headers }
     );
@@ -45,7 +45,7 @@ export class ReservationService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.post(
-      this.reservationUrl + 'api/reservation/valentine-race',
+      this.reservationUrl + 'reservation/valentine-race',
       dto,
       { headers }
     );
@@ -55,7 +55,7 @@ export class ReservationService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.post(
-      this.reservationUrl + 'api/reservation/london-half-marathon-race',
+      this.reservationUrl + 'reservation/london-half-marathon-race',
       dto,
       { headers }
     );

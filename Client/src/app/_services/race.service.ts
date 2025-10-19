@@ -21,7 +21,7 @@ export class RaceService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.post(this.apiUrl + 'api/race', dto, { headers });
+    return this.http.post(this.apiUrl + 'race', dto, { headers });
   }
 
   getRaces(dto: PaginationDto): Observable<PaginationResult<GetRaceDto>> {
@@ -29,7 +29,7 @@ export class RaceService {
       .set('PageNumber', dto.pageNumber.toString())
       .set('PageSize', dto.pageSize.toString());
     return this.http.get<PaginationResult<GetRaceDto>>(
-      this.apiUrl + 'api/race',
+      this.apiUrl + 'race',
       { params }
     );
   }
@@ -41,7 +41,7 @@ export class RaceService {
       .set('PageNumber', dto.pageNumber.toString())
       .set('PageSize', dto.pageSize.toString());
     return this.http
-      .get<PaginationResult<GetRaceDto>>(this.apiUrl + 'api/race', { params })
+      .get<PaginationResult<GetRaceDto>>(this.apiUrl + 'race', { params })
       .pipe(
         map((races) => {
           return {
@@ -70,11 +70,11 @@ export class RaceService {
       );
   }
   getRaceWithId(id: number): Observable<GetRaceDto> {
-    return this.http.get<GetRaceDto>(this.apiUrl + `api/race/${id}`);
+    return this.http.get<GetRaceDto>(this.apiUrl + `race/${id}`);
   }
 
   getRaceViewWithId(id: number): Observable<GetRaceViewDto> {
-    return this.http.get<GetRaceDto>(this.apiUrl + `api/race/${id}`).pipe(
+    return this.http.get<GetRaceDto>(this.apiUrl + `race/${id}`).pipe(
       map((race) => {
         return {
           id: race.id,
@@ -101,13 +101,13 @@ export class RaceService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.delete(this.apiUrl + `api/race/${id}`, { headers });
+    return this.http.delete(this.apiUrl + `race/${id}`, { headers });
   }
 
   update(id: number, dto: UpdateRaceDto) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.put(this.apiUrl + `api/race/${id}`, dto, { headers });
+    return this.http.put(this.apiUrl + `race/${id}`, dto, { headers });
   }
 }
