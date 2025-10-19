@@ -45,7 +45,7 @@ export class LondonRunFormComponent {
   isTShirtSizeSelectVisibility: boolean = false;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceIdString: string | null = '';
-  raceUrl: string = environment.raceUrl;
+  raceUrl = "http://localhost:5002/";
   raceTraces: GetRaceTraceViewDto[] = [];
 
   personalInfoForm: FormGroup<UserInformationForm> = this.fb.group({

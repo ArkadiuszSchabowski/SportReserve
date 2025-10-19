@@ -41,7 +41,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
   isDonationAmountSelectVisibility: boolean = false;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceIdString: string | null = '';
-  raceUrl: string = environment.raceUrl;
+  raceUrl = "http://localhost:5002/";
 
   FLEXIBLE_PHONE_NUMBER_REGEX =
     /^\+?(\d{2})?[-\s]?\d{3}[-\s]?\d{3}[-\s]?\d{3}$/;

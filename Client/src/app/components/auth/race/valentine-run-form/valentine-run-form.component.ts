@@ -39,7 +39,7 @@ export class ValentineRunFormComponent {
   isLinear: boolean = true;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceIdString: string | null = '';
-  raceUrl: string = environment.raceUrl;
+  raceUrl = "http://localhost:5002/";
   raceTraces: GetRaceTraceViewDto[] = [];
 
   valentineGadgets = [

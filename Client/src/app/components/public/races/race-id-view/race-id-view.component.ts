@@ -22,10 +22,12 @@ export class RaceIdViewComponent {
   currentUser: string | null = null;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceSlug: string = '';
-  raceUrl = environment.raceUrl;
+  raceUrl = "http://localhost:5002/";
 
   ngOnInit(): void {
     this.getRace();
+    console.log(this.race.posterUrl)
+    console.log(this.race);
     this.setUser();
   }
 
