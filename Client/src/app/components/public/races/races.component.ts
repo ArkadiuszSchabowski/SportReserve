@@ -17,7 +17,7 @@ export class RacesComponent implements OnInit {
   currentUser: string | null = null;
   paginationDto: PaginationDto = new PaginationDto();
   paginationResult: PaginationResult<GetRaceViewDto> = new PaginationResult();
-  raceUrl = "http://localhost:5002/"
+  raceUrl = environment.raceUrl;
 
   constructor(
     private authService: AuthService,
