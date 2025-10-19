@@ -15,12 +15,12 @@ export class RaceTraceService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.post(this.apiUrl + 'api/racetrace', dto, {headers});
+    return this.http.post(this.apiUrl + 'racetrace', dto, {headers});
   }
   remove(id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.delete(this.apiUrl + `api/racetrace/${id}`, {headers});
+    return this.http.delete(this.apiUrl + `racetrace/${id}`, {headers});
   }
 }

@@ -25,7 +25,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
   paginationResult: PaginationResult<GetRaceDto> = new PaginationResult();
   allRacesResult: PaginationResult<GetRaceDto> = new PaginationResult();
   paginationDto: PaginationDto = new PaginationDto();
-  raceUrl = environment.raceUrl;
+  raceUrl = "http://localhost:5002/";
   searchForm = this.fb.nonNullable.group({
     searchValue: '',
   });
