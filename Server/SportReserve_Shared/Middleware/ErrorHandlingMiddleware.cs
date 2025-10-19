@@ -57,7 +57,7 @@ namespace SportReserve_Shared.Middleware
             catch (Exception)
             {
                 context.Response.StatusCode = 500;
-                await context.Response.WriteAsync("Błąd serwera!");
+                await context.Response.WriteAsync("Unexpected server error. Try again later.");
             }
         }
     }
