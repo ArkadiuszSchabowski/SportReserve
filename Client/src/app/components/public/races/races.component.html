@@ -1,19 +1,23 @@
 <div id="main-container" class="component-container white-text">
-  <div
-    class="race-container"
-    *ngFor="let race of paginationResult.results"
-  >
+  <div class="race-container" *ngFor="let race of paginationResult.results">
     <div class="left-image-container">
-      <img id="poster" class="poster-button" *ngIf="race.posterUrl" [src]="raceUrl + race.posterUrl"/>
+      <img
+        id="poster"
+        class="poster-button"
+        *ngIf="race.posterUrl"
+        [src]="'assets/photos/races/' + race.id + '.png'"
+      />
     </div>
     <div class="right-information-container">
       <div class="bold">{{ race.name }}</div>
       <div class="bold">Date: {{ race.dateOfStart }}</div>
       <div class="bold" *ngFor="let race of race.raceTraces">
-        <div>{{race.details}}</div>
+        <div>{{ race.details }}</div>
       </div>
 
-      <div *ngIf="race.entryFeeGBP" class="bold">Entry Fee: {{ race.entryFeeGBP }} GBP</div>
+      <div *ngIf="race.entryFeeGBP" class="bold">
+        Entry Fee: {{ race.entryFeeGBP }} GBP
+      </div>
       <div *ngIf="!race.entryFeeGBP" class="bold">Entry Fee: Free</div>
       <div class="description">
         {{ race.description }}
@@ -30,7 +34,8 @@
       </div>
     </div>
   </div>
-  <mat-paginator class="select-white-theme"
+  <mat-paginator
+    class="select-white-theme"
     [length]="paginationResult.totalCount"
     [pageSize]="10"
     [pageSizeOptions]="[5, 10, 25, 100]"

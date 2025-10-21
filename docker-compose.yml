@@ -1,9 +1,17 @@
+version: "3.9"
+
+networks:
+  sportreserve-net:
+    driver: bridge
+
 services:
   rabbitmq:
     image: rabbitmq:3-management
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - sportreserve-net
 
   users_db:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -14,6 +22,8 @@ services:
       SA_PASSWORD: "User123@"
     ports:
       - "1433:1433"
+    networks:
+      - sportreserve-net
 
   races_db:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -24,6 +34,8 @@ services:
       SA_PASSWORD: "Race123@"
     ports:
       - "1434:1433"
+    networks:
+      - sportreserve-net
 
   reservation_db:
     image: mongo
@@ -31,6 +43,8 @@ services:
       context: ./Server/Reservations
     ports:
       - "27017:27017"
+    networks:
+      - sportreserve-net
 
   api_gateway:
     build:
@@ -39,6 +53,8 @@ services:
       - "5000:5000"
     depends_on:
       - rabbitmq
+    networks:
+      - sportreserve-net
 
   user:
     build:
@@ -51,6 +67,8 @@ services:
     depends_on:
       - rabbitmq
       - users_db
+    networks:
+      - sportreserve-net
 
   race:
     build:
@@ -63,6 +81,8 @@ services:
     depends_on:
       - rabbitmq
       - races_db
+    networks:
+      - sportreserve-net
 
   email:
     build:
@@ -74,6 +94,8 @@ services:
       - RABBITMQ_HOST=rabbitmq
     depends_on:
       - rabbitmq
+    networks:
+      - sportreserve-net
 
   reservation:
     build:
@@ -86,11 +108,15 @@ services:
     depends_on:
       - rabbitmq
       - reservation_db
+    networks:
+      - sportreserve-net
 
   client:
     build:
       context: ./Client
     ports:
-      - "4200:80"
+      - "80:80"
     depends_on:
       - api_gateway
+    networks:
+      - sportreserve-net
