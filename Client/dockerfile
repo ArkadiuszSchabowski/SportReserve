@@ -8,13 +8,11 @@ RUN npm install -g @angular/cli
 
 COPY . .
 
-RUN ng build SportReserve_WebClient --configuration docker
+RUN ng build SportReserve_WebClient
 
 FROM nginx:alpine AS final
 
 COPY --from=builder /app/dist/SportReserve_WebClient /usr/share/nginx/html
-
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
