@@ -1,6 +1,11 @@
 <div id="main-container" class="component-container">
   <div class="left-container">
-    <img id="image" *ngIf="race.posterUrl" [src]="raceUrl + race.posterUrl" />
+    <img
+      id="poster"
+      class="poster-button"
+      *ngIf="race.posterUrl"
+      [src]="'assets/photos/races/' + race.id + '.png'"
+    />
   </div>
   <div class="right-container">
     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
@@ -43,10 +48,7 @@
                 </div>
                 <mat-form-field>
                   <mat-label>Run Type</mat-label>
-                  <mat-select
-                    id="runType"
-                    formControlName="runType"
-                  >
+                  <mat-select id="runType" formControlName="runType">
                     <mat-option
                       *ngFor="let type of runTypes"
                       [value]="type.value"

@@ -7,7 +7,6 @@ import { RaceService } from 'src/app/_services/race.service';
 import { ReservationService } from 'src/app/_services/reservation.service';
 import { TokenService } from 'src/app/_services/token.service';
 import { UserService } from 'src/app/_services/user.service';
-import { environment } from 'src/environments/environment';
 import { AnimalShelterRaceForm } from 'src/app/models/forms/animal-shelter-race-form';
 import { UserInformationForm } from 'src/app/models/forms/user-information-form';
 import { GetRaceTraceViewDto } from 'src/app/models/race/get-race-trace-view-dto';
@@ -41,7 +40,6 @@ export class AnimalShelterRunFormComponent implements OnInit {
   isDonationAmountSelectVisibility: boolean = false;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceIdString: string | null = '';
-  raceUrl = "http://localhost:5002/";
 
   FLEXIBLE_PHONE_NUMBER_REGEX =
     /^\+?(\d{2})?[-\s]?\d{3}[-\s]?\d{3}[-\s]?\d{3}$/;
