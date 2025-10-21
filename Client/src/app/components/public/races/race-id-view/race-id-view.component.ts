@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { RaceService } from 'src/app/_services/race.service';
-import { environment } from 'src/environments/environment';
 import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 
 @Component({
@@ -22,12 +21,9 @@ export class RaceIdViewComponent {
   currentUser: string | null = null;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceSlug: string = '';
-  raceUrl = "http://localhost:5002/";
 
   ngOnInit(): void {
     this.getRace();
-    console.log(this.race.posterUrl)
-    console.log(this.race);
     this.setUser();
   }
 
