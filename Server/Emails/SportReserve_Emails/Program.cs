@@ -47,7 +47,7 @@ var app = builder.Build();
 
 app.UseCors("EmailPolicy");
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
+//app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
