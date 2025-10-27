@@ -1,4 +1,3 @@
-import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GetRaceDto } from '../models/race/get-race-dto';
 import { GetRaceViewDto } from '../models/race/get-race-view-dto';
@@ -8,6 +7,7 @@ import { PaginationResult } from '../models/pagination/pagination-result';
 import { map, Observable } from 'rxjs';
 import { AddRaceDto } from '../models/race/add-race-dto';
 import { UpdateRaceDto } from '../models/race/update-race-dto';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',

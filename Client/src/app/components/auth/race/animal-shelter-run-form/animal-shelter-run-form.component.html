@@ -1,6 +1,11 @@
 <div id="main-container" class="component-container">
   <div class="left-container">
-    <img id="image" *ngIf="race.posterUrl" [src]="raceUrl + race.posterUrl" />
+    <img
+      id="poster"
+      class="poster-button"
+      *ngIf="race.posterUrl"
+      [src]="'assets/photos/races/' + race.id + '.png'"
+    />
   </div>
   <div class="right-container">
     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
@@ -120,10 +125,7 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="personalInfoForm" [editable]="false">
-        <form
-          [formGroup]="personalInfoForm"
-          (ngSubmit)="sendReservation()"
-        >
+        <form [formGroup]="personalInfoForm" (ngSubmit)="sendReservation()">
           <ng-template matStepLabel>Personal information</ng-template>
           <mat-card appearance="outlined">
             <div id="personal-information-form">

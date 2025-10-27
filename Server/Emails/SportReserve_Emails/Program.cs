@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("EmailPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins("http://localhost","http://localhost:4200")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -47,7 +47,7 @@ var app = builder.Build();
 
 app.UseCors("EmailPolicy");
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
+//app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

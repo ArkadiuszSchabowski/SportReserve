@@ -1,6 +1,5 @@
 import { AuthService } from 'src/app/_services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 import { PageEvent } from '@angular/material/paginator';
 import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
@@ -17,7 +16,6 @@ export class RacesComponent implements OnInit {
   currentUser: string | null = null;
   paginationDto: PaginationDto = new PaginationDto();
   paginationResult: PaginationResult<GetRaceViewDto> = new PaginationResult();
-  raceUrl = environment.raceUrl;
 
   constructor(
     private authService: AuthService,
@@ -28,6 +26,7 @@ export class RacesComponent implements OnInit {
   ngOnInit(): void {
     this.setUser();
     this.getRaces();
+
   }
 
   changePage(event: PageEvent) {

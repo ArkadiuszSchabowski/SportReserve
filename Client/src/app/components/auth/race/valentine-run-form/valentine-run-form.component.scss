@@ -24,6 +24,17 @@ mat-form-field {
   flex-direction: column;
 }
 
+#main-container {
+  display: flex;
+  padding: 20px;
+}
+.left-container {
+  display: none;
+}
+.right-container {
+  min-width: 500px;
+}
+
 #personal-information-form,
 #race-form {
   display: flex;
@@ -34,17 +45,29 @@ mat-form-field {
   height: 100%;
 }
 
-#image {
+#poster {
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 400px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
+  .left-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 500px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
+  .left-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 500px;
+  }
 }
