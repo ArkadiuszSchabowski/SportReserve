@@ -8,6 +8,7 @@ import { map } from 'rxjs';
 import { RegisterDto } from '../models/auth/register-dto';
 import { RegisterStepOneDto } from '../models/auth/register-step-one-dto';
 import { TokenDto } from '../models/token-dto';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
