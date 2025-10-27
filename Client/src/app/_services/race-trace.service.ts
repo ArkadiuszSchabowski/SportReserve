@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { AddRaceTraceDto } from '../models/race/add-race-trace-dto';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AnimalShelterRaceReservationDto } from '../models/reservation/animal-shelter-race-reservation-dto';
 import { ValentineRaceReservationDto } from '../models/reservation/valentine-race-reservation-dto';
@@ -9,6 +8,7 @@ import { PaginationDto } from '../models/pagination/pagination-dto';
 import { Observable } from 'rxjs';
 import { PaginationResult } from '../models/pagination/pagination-result';
 import { ReservationBase } from '../models/reservation/base/reservation-base';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
