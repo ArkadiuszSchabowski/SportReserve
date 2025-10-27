@@ -1,5 +1,4 @@
 import { AuthService } from './auth.service';
-import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GetUserDto } from '../models/user/get-user-dto';
 import { Injectable } from '@angular/core';
@@ -66,7 +65,7 @@ export class UserService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.delete(this.apiUrl + `api/user/${id}`, { headers });
+    return this.http.delete(this.apiUrl + `user/${id}`, { headers });
   }
   validateRegisterStepOne(dto: RegisterStepOneDto) {
     return this.http.post(
