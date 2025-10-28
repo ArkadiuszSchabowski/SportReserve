@@ -77,6 +77,8 @@ The application is continuously developed, extended with new features, and regul
 Once the last container is running, you can access the Angular application in your web browser at:  
 **http://localhost:4200**
 
+To make it easier to run the application locally, SSL certificate verification has been temporarily disabled and test email credentials have been added in the code.
+
 ---
 
 ## 👥 Test User Accounts
