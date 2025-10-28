@@ -3,6 +3,8 @@ using FluentEmail.Smtp;
 using SportReserve_Emails.Interfaces;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SportReserve_Emails.Infrastructure
 {
@@ -16,6 +18,12 @@ namespace SportReserve_Emails.Infrastructure
         }
         public void CreateSender()
         {
+            ServicePointManager.ServerCertificateValidationCallback =
+    delegate (object s, X509Certificate? certificate, X509Chain? chain, SslPolicyErrors sslPolicyErrors)
+    {
+        return true;
+    };
+
             var sender = new SmtpSender(() => new SmtpClient("smtp.gmail.com")
             {
                 EnableSsl = true,
