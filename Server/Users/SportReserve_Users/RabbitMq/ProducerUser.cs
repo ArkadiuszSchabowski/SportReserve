@@ -9,10 +9,16 @@ namespace SportReserve_Users.RabbitMq
 {
     public class ProducerUser : IProducerUser
     {
+        private readonly RabbitMqSettings _rabbitMqSettings;
+
+        public ProducerUser(RabbitMqSettings rabbitMqSettings)
+        {
+            _rabbitMqSettings = rabbitMqSettings;
+        }
         public void RegisterEvent(UserRegisteredEventDto dto)
         {
             ConnectionFactory factory = new();
-            factory.Uri = new Uri("amqp://guest:guest@localhost:5672");
+            factory.Uri = new Uri(_rabbitMqSettings.Uri);
             factory.ClientProvidedName = "Rabbit Sender App";
 
             IConnection cnn = factory.CreateConnection();
