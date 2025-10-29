@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SportReserve_Shared.Interfaces;
 using SportReserve_Shared.Interfaces.Base;
@@ -29,6 +30,10 @@ if (isDocker)
 }
 
 builder.Services.AddControllers();
+builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMq"));
+
+builder.Services.AddSingleton(sp =>
+    sp.GetRequiredService<IOptions<RabbitMqSettings>>().Value);
 
 builder.Services
     .AddControllers()
