@@ -30,13 +30,13 @@ The application is continuously developed, extended with new features, and regul
 
 ## ⚙️ Technology Stack
 
+**Backend (Microservices):**  
+- ASP.NET Core (C#)
+
 **Frontend:**  
 - Angular  
 - Angular Material  
 - ngx-bootstrap  
-
-**Backend (Microservices):**  
-- ASP.NET Core (C#)  
 
 **Databases:**  
 - Microsoft SQL Server (MSSQL)  
