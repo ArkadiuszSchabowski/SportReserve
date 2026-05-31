@@ -18,24 +18,43 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+var isRender = Environment.GetEnvironmentVariable("RENDER") == "true";
+
 if (isDocker)
 {
-    builder.WebHost.UseUrls("http://*:5004");
-
-    builder.Services.AddHttpClient("UserService", client =>
+    if (isRender)
     {
-        client.BaseAddress = new Uri("http://user:5001/api/user/");
-    });
+        // === PRZYPADEK 3: Render (Chmura) ===
+        builder.Services.AddHttpClient("UserService", client =>
+            client.BaseAddress = new Uri("https://sportreserve-user.onrender.com/api/user/"));
 
-    builder.Services.AddHttpClient("RaceService", client =>
-    {
-        client.BaseAddress = new Uri("http://race:5002/api/race/");
-    });
+        builder.Services.AddHttpClient("RaceService", client =>
+            client.BaseAddress = new Uri("https://sportreserve-race.onrender.com/api/race/"));
 
-    builder.Services.AddHttpClient("RaceTraceService", client =>
+        builder.Services.AddHttpClient("RaceTraceService", client =>
+            client.BaseAddress = new Uri("https://sportreserve-race.onrender.com/api/racetrace/"));
+    }
+    else
     {
-        client.BaseAddress = new Uri("http://race:5002/api/racetrace/");
-    });
+        {
+        }
+        builder.WebHost.UseUrls("http://*:5004");
+
+        builder.Services.AddHttpClient("UserService", client =>
+        {
+            client.BaseAddress = new Uri("http://user:5001/api/user/");
+        });
+
+        builder.Services.AddHttpClient("RaceService", client =>
+        {
+            client.BaseAddress = new Uri("http://race:5002/api/race/");
+        });
+
+        builder.Services.AddHttpClient("RaceTraceService", client =>
+        {
+            client.BaseAddress = new Uri("http://race:5002/api/racetrace/");
+        });
+    }
 }
 else
 {
@@ -71,7 +90,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReservationPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost","http://localhost:4200")
+        policy.WithOrigins("http://localhost", "http://localhost:4200", "https://sportreserve.onrender.com")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
