@@ -15,8 +15,6 @@ services:
 
   users_db:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    build:
-      context: ./Server/Users
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "User123@"
@@ -27,8 +25,6 @@ services:
 
   races_db:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    build:
-      context: ./Server/Races
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "Race123@"
@@ -39,8 +35,6 @@ services:
 
   reservation_db:
     image: mongo
-    build:
-      context: ./Server/Reservations
     ports:
       - "27017:27017"
     networks:
@@ -49,6 +43,7 @@ services:
   api_gateway:
     build:
       context: ./Server/ApiGateway
+    image: arkadiuszschabowski/sportreserve-apigateway:latest
     ports:
       - "5000:5000"
     depends_on:
@@ -59,6 +54,7 @@ services:
   user:
     build:
       context: ./Server/Users
+    image: arkadiuszschabowski/sportreserve-user:latest
     ports:
       - "5001:5001"
     environment:
@@ -73,6 +69,7 @@ services:
   race:
     build:
       context: ./Server/Races
+    image: arkadiuszschabowski/sportreserve-race:latest
     ports:
       - "5002:5002"
     environment:
@@ -87,6 +84,7 @@ services:
   email:
     build:
       context: ./Server/Emails
+    image: arkadiuszschabowski/sportreserve-email:latest
     ports:
       - "5003:5003"
     environment:
@@ -100,6 +98,7 @@ services:
   reservation:
     build:
       context: ./Server/Reservations
+    image: arkadiuszschabowski/sportreserve-reservation:latest
     ports:
       - "5004:5004"
     environment:
@@ -114,6 +113,7 @@ services:
   client:
     build:
       context: ./Client
+    image: arkadiuszschabowski/sportreserve-client:latest
     ports:
       - "80:80"
     depends_on:

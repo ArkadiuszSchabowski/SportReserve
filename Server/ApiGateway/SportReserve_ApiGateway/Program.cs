@@ -15,29 +15,49 @@ builder.Services
     });
 
 var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+var isRender = Environment.GetEnvironmentVariable("RENDER") == "true";
+
 if (isDocker)
 {
-    builder.WebHost.UseUrls("http://*:5000");
-
-    builder.Services.AddHttpClient("UserService", client =>
+    if (isRender)
     {
-        client.BaseAddress = new Uri("http://user:5001/api/user/");
-    });
+        builder.Services.AddHttpClient("UserService", client =>
+            client.BaseAddress = new Uri("https://sportreserve-user.onrender.com/api/user/"));
 
-    builder.Services.AddHttpClient("RaceService", client =>
-    {
-        client.BaseAddress = new Uri("http://race:5002/api/race/");
-    });
+        builder.Services.AddHttpClient("RaceService", client =>
+            client.BaseAddress = new Uri("https://sportreserve-race.onrender.com/api/race/"));
 
-    builder.Services.AddHttpClient("RaceTraceService", client =>
-    {
-        client.BaseAddress = new Uri("http://race:5002/api/racetrace/");
-    });
+        builder.Services.AddHttpClient("RaceTraceService", client =>
+            client.BaseAddress = new Uri("https://sportreserve-race.onrender.com/api/racetrace/"));
 
-    builder.Services.AddHttpClient("EmailService", client =>
+        builder.Services.AddHttpClient("EmailService", client =>
+            client.BaseAddress = new Uri("https://sportreserve-email.onrender.com/api/email/"));
+    }
+
+    else
     {
-        client.BaseAddress = new Uri("http://email:5003/api/email/");
-    });
+        builder.WebHost.UseUrls("http://*:5000");
+
+        builder.Services.AddHttpClient("UserService", client =>
+        {
+            client.BaseAddress = new Uri("http://user:5001/api/user/");
+        });
+
+        builder.Services.AddHttpClient("RaceService", client =>
+        {
+            client.BaseAddress = new Uri("http://race:5002/api/race/");
+        });
+
+        builder.Services.AddHttpClient("RaceTraceService", client =>
+        {
+            client.BaseAddress = new Uri("http://race:5002/api/racetrace/");
+        });
+
+        builder.Services.AddHttpClient("EmailService", client =>
+        {
+            client.BaseAddress = new Uri("http://email:5003/api/email/");
+        });
+    }
 }
 else
 {
@@ -69,7 +89,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ApiGatewayPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost","http://localhost:4200")
+        policy.WithOrigins("http://localhost","http://localhost:4200", "https://sportreserve.onrender.com")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });

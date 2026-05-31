@@ -82,7 +82,7 @@ $theme: mat.define-light-theme(
   color: mat.get-color-from-palette($primary) !important;
 }
 
-::ng-deep label.mdc-label{
+::ng-deep label.mdc-label {
   color: white !important;
 }
 
@@ -114,6 +114,7 @@ mat-label {
 html,
 body {
   height: 100%;
+  box-sizing: border-box;
 }
 body {
   margin: 0;
