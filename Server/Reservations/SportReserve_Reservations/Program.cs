@@ -90,7 +90,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReservationPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost", "http://localhost:4200")
+        policy.WithOrigins("http://localhost", "http://localhost:4200", "https://sportreserve.onrender.com")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
