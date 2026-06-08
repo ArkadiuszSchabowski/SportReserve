@@ -7,11 +7,11 @@ Application for runners — search for interesting races, register for events, a
 
 ---
 
-<img width="900" alt="sportreserve" src="https://github.com/user-attachments/assets/7c068a40-ea45-4dec-9af9-053579537eb9" />
+<img width="1400" alt="sportreserve" src="https://github.com/user-attachments/assets/7c068a40-ea45-4dec-9af9-053579537eb9" />
 
 ---
 
-<img width="900" alt="sportreserve1" src="https://github.com/user-attachments/assets/41fbded3-bd15-41a3-8bce-ad45b7d664ce" />
+<img width="1400" alt="sportreserve1" src="https://github.com/user-attachments/assets/41fbded3-bd15-41a3-8bce-ad45b7d664ce" />
 
 ---
 
