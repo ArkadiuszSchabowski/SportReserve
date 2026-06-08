@@ -3,16 +3,15 @@
 **About the Project:**
 Application for runners — search for interesting races, register for events, and manage your sports calendar.  
 
+<img width="1572" height="1841" alt="SportReserve" src="https://github.com/user-attachments/assets/cad279f1-a6bf-4144-a8a4-85576796a55d" />
+
+---
+
 <img width="900" alt="sportreserve" src="https://github.com/user-attachments/assets/7c068a40-ea45-4dec-9af9-053579537eb9" />
 
 ---
 
 <img width="900" alt="sportreserve1" src="https://github.com/user-attachments/assets/41fbded3-bd15-41a3-8bce-ad45b7d664ce" />
-
----
-
-<img width="1781" height="1951" alt="SportReserve drawio" src="https://github.com/user-attachments/assets/f3b793bc-f53a-47a2-9f41-dbd249696bf7" />
-
 
 ---
 
